@@ -1,7 +1,7 @@
 version: '3.1'
 
 networks:
-  knit_tracker:
+  nest_architecture:
     driver: bridge
 
 services:
@@ -9,7 +9,7 @@ services:
     depends_on:
       - redis
       - postgres
-    container_name: knit_tracker
+    container_name: nest_architecture
     restart: unless-stopped
     command: bash -c "npm run start:dev"
     env_file: ./.env
@@ -18,23 +18,21 @@ services:
       dockerfile: docker/Dockerfile
     ports:
       - '4000:4000'
-    volumes:
-      - .:/code
-      - /code/node_modules
+
     environment:
       DB_HOST: postgres
       DB_USER: $DB_USER
       DB_PASSWORD: $DB_PASSWORD
       DB_NAME: $DB_NAME
       DB_PORT: $DB_PORT
-      AUTH_REDIS_URL: redis://default:xsoft@redis:6379
+      AUTH_REDIS_URL: redis://default:nest_architecture@redis:6379
     stdin_open: true
     tty: true
     networks:
-      - knit_tracker
+      - nest_architecture
 
   redis:
-    container_name: knit_tracker_redis
+    container_name: nest_architecture_redis
     image: redis:latest
     restart: unless-stopped
     command: redis-server --appendonly yes
@@ -42,10 +40,10 @@ services:
     expose:
       - 6379
     networks:
-      - knit_tracker
+      - nest_architecture
 
   postgres:
-    container_name: knit_tracker_postgres
+    container_name: nest_architecture_postgres
     image: postgres
     ports:
       - '5442:$DB_PORT'
@@ -55,4 +53,4 @@ services:
       POSTGRES_PASSWORD: $DB_PASSWORD
       POSTGRES_DB: $DB_NAME
     networks:
-      - knit_tracker
+      - nest_architecture
