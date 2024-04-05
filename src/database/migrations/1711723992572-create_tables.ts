@@ -11,7 +11,7 @@ export class createTables1711723992572 implements MigrationInterface {
       `CREATE TABLE "products" ("id" SERIAL NOT NULL, "createdBy" integer NOT NULL, "name" character varying NOT NULL, "category" character varying NOT NULL, "price" integer NOT NULL, "description" character varying NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT ('now'::text)::timestamp(6) with time zone, CONSTRAINT "PK_0806c755e0aca124e67c0cf6d7d" PRIMARY KEY ("id"))`
     )
     await queryRunner.query(
-      `ALTER TABLE "products" ADD CONSTRAINT "FK_f74bae41998e06cc579f081ea78" FOREIGN KEY ("createdBy") REFERENCES "users"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`
+      `ALTER TABLE "products" ADD CONSTRAINT "FK_f74bae41998e06cc579f081ea78" FOREIGN KEY ("createdBy") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE NO ACTION`
     )
   }
 
