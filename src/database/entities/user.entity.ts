@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, JoinColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm'
 import { DB_TABLES } from '../constants'
 
 import { PasswordTransformer } from '../../common/transformers/password.transformer'
@@ -19,7 +19,6 @@ export class User {
   email: string
 
   @Column({
-    name: 'password',
     transformer: new PasswordTransformer(),
     nullable: false
   })
@@ -29,7 +28,6 @@ export class User {
   registeredAt: Date
 
   @OneToMany(() => Product, (product) => product.creator)
-  @JoinColumn([{ name: 'id', referencedColumnName: 'createdBy' }])
   products: Product[]
 
   toJSON() {

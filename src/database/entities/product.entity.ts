@@ -26,7 +26,7 @@ export class Product {
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
   createdAt: Date
 
-  @ManyToOne(() => User)
-  @JoinColumn([{ name: 'createdBy', referencedColumnName: 'id' }])
+  @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'createdBy' })
   creator: User
 }
