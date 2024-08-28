@@ -1,0 +1,2 @@
+export const REDIS_CONFIGS_KEY = 'REDIS_CONFIGS'
+export const REDIS_CLIENT_KEY = 'REDIS_CLIENT'
