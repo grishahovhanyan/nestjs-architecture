@@ -56,6 +56,20 @@ Key features include:
     - **`redis/` :**
       - Contains configuration and setup for Redis integration. Redis is used for caching and real-time data processing. This folder includes setup files to integrate Redis into the application, enhancing performance and enabling features like session management and caching.
 
+  - **`swagger/`:**
+    - **`modules/`**: Contains Swagger configurations for different modules.
+      - **`auth/`**: Swagger configurations for the authentication module.
+      - **`users/`**: Swagger configurations for the users module.
+    - **`responses/`**: Defines custom Swagger responses for different HTTP statuses.
+      - `forbidden.ts`: Swagger response for 403 Forbidden status.
+      - `not-found.ts`: Swagger response for 404 Not Found status.
+      - `success.ts`: Swagger response for successful operations.
+      - `unauthorized.ts`: Swagger response for 401 Unauthorized status.
+    - `config.ts`: Contains Swagger configuration settings.
+    - `index.ts`: Entry point for the Swagger configuration.
+    - `utils.ts`: Utility functions for Swagger configuration.
+    - `tsconfig.lib.json`: TypeScript configuration specific to the Swagger library.
+
 - **`src/` :**
 
   - The `src` folder is the core of the application. It contains the main application entry point and the organization of various features through modules.
