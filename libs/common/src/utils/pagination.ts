@@ -1,4 +1,6 @@
-import { getSortOrderFromQuery } from '@app/common'
+import { Type } from 'class-transformer'
+import { ApiProperty } from '@nestjs/swagger'
+import { PaginationResponseDto, getSortOrderFromQuery } from '@app/common'
 import { IOrderObject } from '@app/database'
 import { getEnvNumber } from './get-env'
 
@@ -51,4 +53,14 @@ export function paginatedResponse(items, totalCount: number, page: number, perPa
     count: items.length,
     items
   }
+}
+
+export function getPaginationResponseDto<T>(dtoType: new () => T) {
+  class PaginationResponseDtoWithItems extends PaginationResponseDto<T> {
+    @ApiProperty({ isArray: true, type: () => dtoType })
+    @Type(() => dtoType)
+    items: T[]
+  }
+
+  return PaginationResponseDtoWithItems
 }

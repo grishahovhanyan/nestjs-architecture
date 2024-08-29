@@ -1,7 +1,6 @@
-import { USERS_SORT_FIELDS } from '@app/common'
-import { IOrderObject } from '@app/database'
-import { getOrderingDescription } from '@app/swagger'
 import { ApiPropertyOptional } from '@nestjs/swagger'
+import { USERS_SORT_FIELDS, getOrderingDescription } from '@app/common'
+import { IOrderObject } from '@app/database'
 
 export class GetUsersDto {
   @ApiPropertyOptional()

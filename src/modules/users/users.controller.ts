@@ -7,13 +7,16 @@ import {
   paginatedResponse,
   NotFoundException,
   RequestUser,
-  USERS_SORT_FIELDS
+  TransformResponse,
+  USERS_SORT_FIELDS,
+  UserResponseDto
 } from '@app/common'
 import { UsersService } from './users.service'
 import { GetUsersDto } from './dto/user.dto'
 
 @SwaggerPrivateRoute(SWAGGER_TAGS.Users)
 @Controller('users')
+@TransformResponse(UserResponseDto)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

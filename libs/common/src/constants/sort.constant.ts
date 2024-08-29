@@ -23,3 +23,11 @@ export function getSortOrderFromQuery(queryOrdering: string[], allowedSortFields
 
   return sortOrder
 }
+
+export const getOrderingDescription = (sortFields: string[]) => `
+    Allowed fields: ${sortFields.join(', ')}
+
+    Examples: 
+      ?ordering=-id (descending) 
+      ?ordering=createdAt (ascending) 
+      ?ordering=id,-createdAt`

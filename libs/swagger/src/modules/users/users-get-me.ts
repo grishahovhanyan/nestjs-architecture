@@ -1,14 +1,7 @@
 import { applyDecorators } from '@nestjs/common'
 import { ApiOkResponse } from '@nestjs/swagger'
-
-import { userProperties } from '@app/swagger'
+import { UserResponseDto } from '@app/common'
 
 export function SwaggerUsersGetMe() {
-  return applyDecorators(
-    ApiOkResponse({
-      schema: {
-        properties: userProperties
-      }
-    })
-  )
+  return applyDecorators(ApiOkResponse({ type: UserResponseDto }))
 }

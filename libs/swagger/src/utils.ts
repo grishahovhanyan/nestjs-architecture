@@ -1,5 +1,5 @@
 import { applyDecorators } from '@nestjs/common'
-import { ApiBearerAuth, ApiQuery } from '@nestjs/swagger'
+import { ApiBearerAuth } from '@nestjs/swagger'
 import { ApiTags } from '@nestjs/swagger'
 
 import { SwaggerUnauthorized401 } from './responses'
@@ -20,13 +20,4 @@ export function SwaggerBearerAuth() {
 
 export function SwaggerPrivateRoute(tagName: string) {
   return applyDecorators(SwaggerTag(tagName), SwaggerBearerAuth(), SwaggerUnauthorized401())
-}
-
-export function SwaggerQueryParam(
-  name: string,
-  isRequired?: boolean,
-  description?: string,
-  enumValues?: number[] | string[]
-) {
-  return applyDecorators(ApiQuery({ name, required: isRequired ?? false, description, enum: enumValues }))
 }

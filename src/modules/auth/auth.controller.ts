@@ -1,7 +1,14 @@
 import { Body, Controller, HttpCode, Post } from '@nestjs/common'
 import { SWAGGER_TAGS, SwaggerTag, SwaggerAuth } from '@app/swagger'
 
-import { Public, BadRequestException, ERROR_MESSAGES } from '@app/common'
+import {
+  Public,
+  TransformResponse,
+  BadRequestException,
+  ERROR_MESSAGES,
+  UserResponseDto,
+  LoginResponseDto
+} from '@app/common'
 import { LoginDto, RegisterDto } from './dto/auth.dto'
 
 import { AuthService } from './auth.service'
@@ -16,6 +23,7 @@ export class AuthController {
   @SwaggerAuth.register()
   @Post('register')
   @HttpCode(200)
+  @TransformResponse(UserResponseDto)
   async register(@Body() registerDto: RegisterDto) {
     const user = await this.usersService.getByEmail(registerDto.email)
 
@@ -31,6 +39,7 @@ export class AuthController {
   @SwaggerAuth.login()
   @Post('login')
   @HttpCode(200)
+  @TransformResponse(LoginResponseDto)
   async login(@Body() loginDto: LoginDto) {
     const user = await this.authService.validateUser(loginDto.email, loginDto.password)
 

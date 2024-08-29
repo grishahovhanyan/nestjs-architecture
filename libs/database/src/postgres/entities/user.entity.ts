@@ -1,3 +1,4 @@
+import { Exclude, Expose } from 'class-transformer'
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm'
 import { DB_TABLES } from '../constants'
 
@@ -21,6 +22,7 @@ export class User {
   @Column({ nullable: false })
   birthDate: string
 
+  @Exclude()
   @Column({
     transformer: new PasswordTransformer(),
     nullable: false
@@ -44,13 +46,13 @@ export class User {
   // @OneToOne(() => Basket, (basket) => basket.user)
   // basket: Basket
 
-  toJSON() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...self } = this
-    return {
-      ...self,
-      fullName: `${this.firstName} ${this.lastName}`,
-      age: calculateAge(this.birthDate)
-    }
+  @Expose()
+  get fullName(): string {
+    return `${this.firstName} ${this.lastName}`
+  }
+
+  @Expose()
+  get age(): number {
+    return calculateAge(this.birthDate)
   }
 }
