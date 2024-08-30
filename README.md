@@ -1,19 +1,19 @@
-# NestJS Architecture
+# 🚀 NestJS Architecture!
 
 This project serves as a robust and scalable foundational architecture for building a modern NestJS application. It comes pre-configured with essential features and best practices, allowing developers to focus on building business logic rather than spending time on initial setup. The architecture is designed to be modular, maintainable, and easily extensible, making it ideal for both small-scale applications and large enterprise solutions.
 
-Key features include:
+### 🔍 Key features include:
 
-- **Modular Structure:** Organized into feature-based modules, promoting separation of concerns and reusability across different parts of the application.
-- **Database Integration:** Seamless integration with PostgreSQL, including pre-configured TypeORM support for efficient database interaction, along with migration management to handle schema changes.
-- **Redis Integration:** Pre-configured Redis support for caching and real-time data processing needs.
-- **Authentication and Authorization:** Built-in JWT-based authentication module to handle user sessions securely, including registration, login, and user management APIs.
-- **API Documentation:** Auto-generated API documentation using NestJS DTOs. Additionally, in another branch called `main-custom-swagger`, the project includes a custom Swagger implementation with details available in the `libs/swagger` folder.
-- **Validation and Error Handling:** Utilizes `class-validator` for easy validation through decorators, alongside custom exceptions with tailored messages and validation responses to ensure robust error handling.
-- **Docker Support:** Ready-to-use Docker and Docker Compose configurations for containerized deployment, ensuring consistency across different environments.
-- **AWS Integration:** Built-in support for AWS SNS and SQS, offering powerful tools for asynchronous communication and event-driven architectures. (AWS integration is disabled by default. It can be activated within the `global.module`.)
+- 🧩 **Modular Structure:** Organized into feature-based modules, promoting separation of concerns and reusability across different parts of the application.
+- 🗄️ **Database Integration:** Seamless integration with PostgreSQL, including pre-configured TypeORM support for efficient database interaction, along with migration management to handle schema changes.
+- ⚡ **Redis Integration:** Pre-configured Redis support for caching and real-time data processing needs.
+- 🔐 **Authentication and Authorization:** Built-in JWT-based authentication module to handle user sessions securely, including registration, login, and user management APIs.
+- 📄 **API Documentation:** Auto-generated API documentation using NestJS DTOs. Additionally, in another branch called `main-custom-swagger`, the project includes a custom Swagger implementation with details available in the `libs/swagger` folder.
+- 🛡️ **Validation and Error Handling:** Utilizes `class-validator` for easy validation through decorators, alongside custom exceptions with tailored messages and validation responses to ensure robust error handling.
+- 🐳 **Docker Support:** Ready-to-use Docker and Docker Compose configurations for containerized deployment, ensuring consistency across different environments.
+- ☁️ **AWS Integration:** Built-in support for AWS SNS and SQS, offering powerful tools for asynchronous communication and event-driven architectures. (AWS integration is disabled by default. It can be activated within the `global.module`.)
 
-## Project Structure
+## 🗂️ Project Structure
 
 - **`libs/` :**
 
@@ -99,11 +99,11 @@ Key features include:
 - **`.prettierrc.js` :**
   - Configures Prettier for code formatting. It specifies formatting options such as indentation, line width, and quote style, ensuring that code adheres to a consistent format throughout the project.
 
-## Note on `NOTE`
+## 📝 Note on `NOTE`
 
 Throughout the project, you will encounter `NOTE` comments that provide important context or instructions. These comments are intended to guide developers in understanding key parts of the code, configuration, and best practices.
 
-## Prerequisites:
+## 💻 Prerequisites:
 
 Ensure you have the following tools installed in your PC:
 
@@ -111,7 +111,7 @@ Ensure you have the following tools installed in your PC:
 - NestJS
 - Postgres
 
-## Run project:
+## 🚀 Run project:
 
 1. Clone the repository:
 
@@ -151,7 +151,7 @@ npm run start:dev
 
 After starting the server, you can access the application at: http://localhost:PORT_FROM_ENV/swagger-ui/
 
-## Run project with docker:
+## 🐳 Run project with docker:
 
 1. After clone go to the project directory and create a .env file from the provided .env.example file.
 
@@ -171,7 +171,7 @@ docker build . -f docker/Dockerfile
 docker run --entrypoint /usr/src/app/docker/entrypoint.sh -it IMAGE_ID_FROM_PREVIOUS_STEP /usr/src/app/docker/start_node.sh
 ```
 
-## Run project with docker compose:
+## 🐳 Run project with docker compose:
 
 1. After clone go to the project directory and create a .env file from the provided .env.example file.
 
@@ -191,7 +191,7 @@ docker compose up --build
 docker compose up
 ```
 
-## API V1 Endpoints
+## ✏️ API V1 Endpoints
 
 - **Healthcheck:** `GET /healthcheck/`
 
@@ -204,7 +204,7 @@ docker compose up
 
 ![swagger](public/img/swagger.png)
 
-## NPM Commands
+## 🗂️ NPM Commands
 
 - **`npm run format`**: Formats TypeScript files in the `src`, `test`, and `libs` directories according to the rules defined in the `.prettierrc.js` configuration file.
 
@@ -230,7 +230,7 @@ docker compose up
 
 - **`npm run migrations:rollback`**: Reverts the last migration that was applied, rolling back the database schema to the previous state.
 
-## NestJS CLI Commands
+## 🗂️ NestJS CLI Commands
 
 - **`nest g module MODULE_NAME`**: Generates a new module in the application, creating a directory and file structure for the module.
 
@@ -242,6 +242,6 @@ docker compose up
 
 - **`nest g library LIB_NAME`**: Generates a new library in the `libs/` folder, creating a reusable set of functionalities that can be shared across the application.
 
-## Author
+## 📝 Author
 
 - **Grisha Hovhanyan** - [github:grishahovhanyan](https://github.com/grishahovhanyan)
