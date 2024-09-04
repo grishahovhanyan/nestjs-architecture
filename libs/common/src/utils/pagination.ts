@@ -56,7 +56,7 @@ export function paginatedResponse(items, totalCount: number, page: number, perPa
 }
 
 export function getPaginationResponseDto<T>(dtoType: new () => T) {
-  class PaginationResponseDtoWithItems extends PaginationResponseDto<T> {
+  class PaginationResponseDtoWithItems<T> extends PaginationResponseDto {
     @ApiProperty({ isArray: true, type: () => dtoType })
     @Type(() => dtoType)
     items: T[]
