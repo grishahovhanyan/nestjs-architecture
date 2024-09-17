@@ -1,8 +1,8 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common'
-import { SWAGGER_TAGS, SwaggerTag, SwaggerAuth } from '@app/swagger'
+import { Body, HttpCode, Post } from '@nestjs/common'
+import { SwaggerAuth } from '@app/swagger'
 
 import {
-  Public,
+  EnhancedController,
   TransformResponse,
   BadRequestException,
   ERROR_MESSAGES,
@@ -14,9 +14,7 @@ import { LoginDto, RegisterDto } from './dto/auth.dto'
 import { AuthService } from './auth.service'
 import { UsersService } from '@modules/users/users.service'
 
-@SwaggerTag(SWAGGER_TAGS.Auth)
-@Public()
-@Controller('auth')
+@EnhancedController('', false, 'Auth')
 export class AuthController {
   constructor(private readonly authService: AuthService, private readonly usersService: UsersService) {}
 

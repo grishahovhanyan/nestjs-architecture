@@ -1,11 +1,7 @@
-import { Controller, Get } from '@nestjs/common'
+import { Get } from '@nestjs/common'
+import { EnhancedController } from '@app/common'
 
-import { SWAGGER_TAGS, SwaggerTag } from '@app/swagger'
-import { Public } from '@app/common'
-
-@SwaggerTag(SWAGGER_TAGS.App)
-@Public()
-@Controller()
+@EnhancedController('', false, 'App')
 export class AppController {
   @Get('healthcheck')
   index() {
