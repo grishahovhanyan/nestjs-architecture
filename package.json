@@ -1,6 +1,6 @@
 {
   "name": "nestjs-architecture",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Nestjs Architecture",
   "author": "Grisha Hovhanyan",
   "scripts": {
@@ -33,6 +33,8 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "compression": "^1.7.4",
+    "helmet": "^7.1.0",
     "ioredis": "^5.4.1",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.0",
@@ -52,8 +54,10 @@
     "@nestjs/schematics": "^9.0.3",
     "@nestjs/testing": "^9.2.1",
     "@types/bcryptjs": "^2.4.6",
+    "@types/compression": "^1.7.5",
     "@types/express": "^4.17.15",
     "@types/jsonwebtoken": "^9.0.0",
+    "@types/lodash": "^4.17.7",
     "@types/node": "^18.11.17",
     "@types/passport-jwt": "^3.0.13",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
