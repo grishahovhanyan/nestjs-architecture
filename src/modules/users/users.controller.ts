@@ -1,11 +1,12 @@
-import { Get, Controller, Query, Param } from '@nestjs/common'
-import { SWAGGER_TAGS, SwaggerPrivateRoute, SwaggerUsers } from '@app/swagger'
+import { Get, Query, Param } from '@nestjs/common'
+import { SwaggerUsers } from '@app/swagger'
 
 import {
   PAGE_SIZE_TYPES,
   getPaginationAndSortOrder,
   paginatedResponse,
   NotFoundException,
+  EnhancedController,
   RequestUser,
   TransformResponse,
   USERS_SORT_FIELDS,
@@ -14,8 +15,7 @@ import {
 import { UsersService } from './users.service'
 import { GetUsersDto } from './dto/user.dto'
 
-@SwaggerPrivateRoute(SWAGGER_TAGS.Users)
-@Controller('users')
+@EnhancedController('users')
 @TransformResponse(UserResponseDto)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
