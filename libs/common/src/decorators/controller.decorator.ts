@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { applyDecorators, Controller } from '@nestjs/common'
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 import { upperFirst } from 'lodash'

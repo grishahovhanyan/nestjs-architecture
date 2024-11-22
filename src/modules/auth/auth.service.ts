@@ -7,7 +7,10 @@ import { UsersService } from '@modules/users/users.service'
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly jwtService: JwtService, private readonly usersService: UsersService) {}
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly usersService: UsersService
+  ) {}
 
   async validateUser(email: string, pass: string): Promise<User> {
     const user = await this.usersService.getByEmail(email)

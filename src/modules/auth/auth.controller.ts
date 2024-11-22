@@ -16,7 +16,10 @@ import { UsersService } from '@modules/users/users.service'
 
 @EnhancedController('', false, 'Auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService, private readonly usersService: UsersService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly usersService: UsersService
+  ) {}
 
   @SwaggerAuth.register()
   @Post('register')

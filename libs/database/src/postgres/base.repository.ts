@@ -6,7 +6,10 @@ import { IFindAndCountInput, IFindAndCountOutput, IFindInput } from './db.interf
 
 @Injectable()
 export class BaseRepository<T> {
-  constructor(private dataSource: DataSource, private entity: new () => T) {}
+  constructor(
+    private dataSource: DataSource,
+    private entity: new () => T
+  ) {}
 
   protected getRepository(): Repository<T> {
     return this.dataSource.manager.getRepository(this.entity)
