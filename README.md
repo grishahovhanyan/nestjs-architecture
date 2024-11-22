@@ -92,7 +92,7 @@ This project serves as a robust and scalable foundational architecture for build
 
   - Provides a template for environment variables required by the application. It includes placeholders for necessary configuration values such as database credentials, JWT secrets, and other settings. This file serves as a reference for creating the actual `.env` file with appropriate values for different environments (development, testing, production).
 
-- **`.eslintrc.js` :**
+- **`eslintrc.json.mjs` :**
 
   - Configures ESLint for linting JavaScript/TypeScript code. It defines rules and settings for code quality and style enforcement, ensuring consistent and error-free code across the project.
 
