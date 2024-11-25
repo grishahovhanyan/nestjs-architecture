@@ -60,6 +60,7 @@ export default [
         "avoidEscape": true,
         "allowTemplateLiterals": true
       }],
+      "no-unused-vars": "error",
       "object-curly-spacing": ["error", "always"],
       "array-bracket-spacing": ["error", "never"],
       "computed-property-spacing": ["error", "never"],
