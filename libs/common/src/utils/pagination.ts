@@ -2,18 +2,18 @@ import { Type } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
 import { PaginationResponseDto, getSortOrderFromQuery } from '@app/common'
 import { IOrderObject } from '@app/database'
-import { getEnvNumber } from './get-env'
+import { envService } from './get-env'
 
 export const PAGE_SIZE_TYPES = {
   users: 'users'
 }
 
 export const PAGE_SIZES = {
-  usersPageSize: getEnvNumber('USERS_PAGE_SIZE', 50)
+  usersPageSize: envService.getEnvNumber('USERS_PAGE_SIZE', 50)
 }
 
 export const MAX_PAGE_SIZES = {
-  usersMaxPageSize: getEnvNumber('USERS_MAX_PAGE_SIZE', 200)
+  usersMaxPageSize: envService.getEnvNumber('USERS_MAX_PAGE_SIZE', 200)
 }
 
 export function getPerPage(type: string, querySize?: number) {

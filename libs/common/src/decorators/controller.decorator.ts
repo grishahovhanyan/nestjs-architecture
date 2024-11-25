@@ -18,7 +18,7 @@ export function EnhancedController(prefix: string, secured = true, swaggerTag = 
   ]
 
   if (secured) {
-    decorators.push(ApiBearerAuth('JWT'), SwaggerUnauthorized401())
+    decorators.push(ApiBearerAuth(), SwaggerUnauthorized401())
   } else {
     decorators.push(Public())
   }
