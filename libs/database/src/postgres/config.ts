@@ -1,9 +1,10 @@
 import * as path from 'path'
 import { ConfigService } from '@nestjs/config'
 import { DataSourceOptions } from 'typeorm'
-import { POSTGRES_ENTITIES } from './entities'
 
 const configService = new ConfigService()
+
+const entities = [path.join(process.cwd(), 'dist', 'src', 'modules/**/*.entity{.ts,.js}')]
 
 export const POSTGRES_CONFIGS: DataSourceOptions = {
   type: 'postgres',
@@ -12,8 +13,7 @@ export const POSTGRES_CONFIGS: DataSourceOptions = {
   username: configService.get('POSTGRES_USER'),
   password: `${configService.get('POSTGRES_PASSWORD')}`,
   database: configService.get('POSTGRES_DATABASE'),
-  entities: POSTGRES_ENTITIES,
-  migrations: [path.join(__dirname, 'migrations', '*{.ts,.js}')],
+  entities,
   logging: configService.get('POSTGRES_LOGGING') === 'true',
   synchronize: configService.get('POSTGRES_SYNCHRONIZE') === 'true',
   dropSchema: configService.get('POSTGRES_DROP_SCHEMA') === 'true'

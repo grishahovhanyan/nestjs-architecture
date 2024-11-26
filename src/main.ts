@@ -5,7 +5,7 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 import { NestFactory } from '@nestjs/core'
 import { Logger } from '@nestjs/common'
 import helmet from 'helmet'
-import * as compression from 'compression'
+import compression from 'compression'
 
 import { SWAGGER_CONFIGS, SWAGGER_OPTIONS } from '@app/swagger'
 import { ValidationPipe, envService } from '@app/common'

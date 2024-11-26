@@ -2,11 +2,13 @@
 ####### NOTE #######
 This entity is not used anywhere in the project,
 it is used only to demonstrate the types of entity relationships
+In real projects, it is recommended to save each entity 
+in the `src/modules/MODULE_NAME/entities` folder for better organization.
 */
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
-import { DB_TABLES } from '../constants'
+import { DbTables } from '../db.enum'
 
-@Entity(DB_TABLES.Baskets)
+@Entity(DbTables.baskets)
 export class Basket {
   @PrimaryGeneratedColumn()
   id: number

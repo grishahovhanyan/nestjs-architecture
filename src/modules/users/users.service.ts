@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
-import { User } from '@app/database'
+import { User } from './entities/user.entity'
 import { CreateUserDto, GetUsersDto } from './dto/user.dto'
 
 import { UsersRepository } from './users.repository'
@@ -58,14 +58,14 @@ export class UsersService {
       queryBuilder.andWhere('user.birthDate <= :birthDateLte', { birthDateLte: new Date(birthDateLte) })
     }
 
-    const currentDate = new Date()
-
-    if (ageGte !== undefined) {
+    if (ageGte) {
+      const currentDate = new Date()
       const birthDateLteForAgeGte = new Date(currentDate.setFullYear(currentDate.getFullYear() - ageGte))
       queryBuilder.andWhere('user.birthDate <= :birthDateLteForAgeGte', { birthDateLteForAgeGte })
     }
 
-    if (ageLte !== undefined) {
+    if (ageLte) {
+      const currentDate = new Date()
       const birthDateGteForAgeLte = new Date(currentDate.setFullYear(currentDate.getFullYear() - ageLte - 1))
       queryBuilder.andWhere('user.birthDate >= :birthDateGteForAgeLte', { birthDateGteForAgeLte })
     }

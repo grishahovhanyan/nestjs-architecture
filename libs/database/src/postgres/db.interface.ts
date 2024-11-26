@@ -1,11 +1,5 @@
 import { FindOptionsOrder, FindOptionsWhere } from 'typeorm'
 
-export interface IDbTables {
-  Users: 'users'
-  Products: 'products'
-  Baskets: 'baskets'
-}
-
 export interface IOrderObject {
   [key: string]: 'ASC' | 'DESC'
 }
