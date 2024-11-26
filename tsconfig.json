@@ -1,15 +1,27 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "CommonJS",
+    "target": "ES2022",
+    "outDir": "./dist",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "declaration": true,
-    "removeComments": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "incremental": true,
+    "sourceMap": true,
+    "moduleResolution": "Node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
+    "removeComments": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
     "paths": {
       "@modules/*": ["src/modules/*"],
       "@app/common": ["libs/common/src"],
@@ -18,13 +30,8 @@
       "@app/database/*": ["libs/database/src/*"],
       "@app/swagger": ["libs/swagger/src"],
       "@app/swagger/*": ["libs/swagger/src/*"]
-    },
-    "incremental": true,
-    "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    }
+  },
+  "include": ["src/**/*.ts", "libs/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
