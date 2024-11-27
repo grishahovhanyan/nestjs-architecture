@@ -1,9 +1,11 @@
-import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common'
+import { Injectable, NestInterceptor, ExecutionContext, CallHandler, Logger } from '@nestjs/common'
 import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 
 @Injectable()
 export class RequestLoggerInterceptor implements NestInterceptor {
+  private readonly logger = new Logger('RequestLogger')
+
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const request = context.switchToHttp().getRequest()
     const response = context.switchToHttp().getResponse()
@@ -16,7 +18,9 @@ export class RequestLoggerInterceptor implements NestInterceptor {
         const statusCode = response.statusCode
         const url = request.url
 
-        console.info(`Request URL: ${url} | Response Code: ${statusCode} | Duration: ${(endTime - startTime) / 1000}s`)
+        this.logger.debug(
+          `Request URL: ${url} | Response Code: ${statusCode} | Duration: ${(endTime - startTime) / 1000}s`
+        )
       })
     )
   }
