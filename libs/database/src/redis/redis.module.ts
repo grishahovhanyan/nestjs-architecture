@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common'
-import { createClient } from 'redis'
+import { Logger, Module } from '@nestjs/common'
+import { createClient, RedisClientOptions } from 'redis'
 
 import { REDIS_CONFIGS_KEY, REDIS_CLIENT_KEY } from './constants'
 import { REDIS_CONFIG } from './config'
@@ -14,10 +14,24 @@ import { RedisService } from './redis.service'
     {
       inject: [REDIS_CONFIGS_KEY],
       provide: REDIS_CLIENT_KEY,
-      useFactory: async (options: { url: string }) => {
-        const client = createClient(options)
-        await client.connect()
-        return client
+      useFactory: async (options: RedisClientOptions) => {
+        const logger = new Logger('Redis')
+
+        if (!options) {
+          throw new Error('❌ [Redis connection failed]: Invalid options passed')
+        }
+
+        try {
+          const client = createClient(options)
+          await client.connect()
+
+          logger.log('⚡ Redis connection initialized successfully.')
+
+          return client
+        } catch (error) {
+          logger.error(`❌ [Redis connection error]: ${error.message}`)
+          throw error
+        }
       }
     },
     RedisService

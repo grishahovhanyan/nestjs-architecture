@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config'
 import { envValidationSchema, JwtAuthGuard, RequestLoggerInterceptor } from '@app/common'
 import { PostgresModule, RedisModule } from '@app/database'
 import { AWSModule } from './aws/aws.module'
+import { QueueModule } from './queues/queue.module'
 
 /* 
 ####### NOTE #######
@@ -19,6 +20,15 @@ You can also add other shared or infrastructural services here, such as logging,
 Any additional global services or modules can be added to this module as the application evolves.
 */
 
+/* 
+####### NOTE #######
+The `sharedFeatureModules` array includes all modules that:
+1. Contain providers (e.g., services) which are required by other modules in the application (e.g., `SnsService` from `AWSModule`).
+2. Must be included in both `imports` and `exports` of the `InfrastructureModule` to make their providers globally accessible.
+*/
+
+const sharedFeatureModules = [RedisModule, AWSModule, QueueModule]
+
 @Global()
 @Module({
   imports: [
@@ -28,8 +38,7 @@ Any additional global services or modules can be added to this module as the app
       validationSchema: envValidationSchema
     }),
     PostgresModule,
-    RedisModule,
-    AWSModule
+    ...sharedFeatureModules
   ],
   providers: [
     {
@@ -41,6 +50,6 @@ Any additional global services or modules can be added to this module as the app
       useClass: RequestLoggerInterceptor
     }
   ],
-  exports: [RedisModule, AWSModule]
+  exports: [...sharedFeatureModules]
 })
 export class InfrastructureModule {}

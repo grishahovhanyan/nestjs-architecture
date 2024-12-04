@@ -1,7 +1,10 @@
-import { ConfigService } from '@nestjs/config'
+import { envService } from '@app/common'
 
-const configService = new ConfigService()
+const username = envService.getEnvString('REDIS_USERNAME', 'default')
+const password = envService.getEnvString('REDIS_PASSWORD', 'user')
+const host = envService.getEnvString('REDIS_HOST', 'localhost')
+const port = envService.getEnvNumber('REDIS_PORT', 6379)
 
 export const REDIS_CONFIG = {
-  url: configService.get('REDIS_URL')
+  url: `redis://${username}:${password}@${host}:${port}`
 }

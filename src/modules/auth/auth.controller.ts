@@ -11,12 +11,14 @@ import {
 } from '@app/common'
 import { LoginDto, RegisterDto } from './dto/auth.dto'
 
+import { NotificationQueueService } from '@infra/queues'
 import { AuthService } from './auth.service'
 import { UsersService } from '@modules/users/users.service'
 
 @EnhancedController('', false, 'Auth')
 export class AuthController {
   constructor(
+    private readonly notificationQueueService: NotificationQueueService,
     private readonly authService: AuthService,
     private readonly usersService: UsersService
   ) {}
@@ -33,6 +35,11 @@ export class AuthController {
     }
 
     const createdUser = await this.usersService.create(registerDto)
+
+    await this.notificationQueueService.registrationSuccess({
+      fullName: createdUser.fullName,
+      email: createdUser.email
+    })
 
     return createdUser
   }
