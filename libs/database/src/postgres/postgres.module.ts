@@ -13,7 +13,7 @@ import { PostgresConfigService } from './postgres-config.service'
         const logger = new Logger('Database')
 
         if (!options) {
-          throw new Error('[Postgres database connection failed]: Invalid options passed')
+          throw new Error('❌ [Postgres database connection failed]: Invalid options passed')
         }
 
         try {
@@ -23,8 +23,7 @@ import { PostgresConfigService } from './postgres-config.service'
 
           return source
         } catch (error) {
-          logger.error(error)
-
+          logger.error(`❌ [Database connection error]: ${error.message}`)
           throw error
         }
       }
