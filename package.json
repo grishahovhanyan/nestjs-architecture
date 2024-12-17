@@ -1,6 +1,6 @@
 {
   "name": "nestjs-architecture",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Nestjs Architecture",
   "author": "Grisha Hovhanyan",
   "scripts": {
@@ -27,7 +27,7 @@
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.4.8",
-    "@nestjs/swagger": "^8.0.7",
+    "@nestjs/swagger": "^8.1.0",
     "@nestjs/typeorm": "^10.0.2",
     "@ssut/nestjs-sqs": "^3.0.0",
     "bcrypt": "^5.1.1",
