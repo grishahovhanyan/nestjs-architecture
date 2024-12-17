@@ -1,17 +1,16 @@
-import { IsNumber, IsOptional } from 'class-validator'
 import { Transform } from 'class-transformer'
-import { ApiPropertyOptional } from '@nestjs/swagger'
+import { NumberFieldOptional } from '../validators'
+import { DEFAULT_PAGE_SIZE, getPerPage, PageTypes } from '../utils'
 
-export class PaginationDto {
-  @ApiPropertyOptional()
-  @IsNumber()
-  @Transform(({ value }) => parseInt(value, 10), { toClassOnly: true })
-  @IsOptional()
-  page?: number
+export function PaginationDto(pageType?: PageTypes) {
+  class DynamicPaginationDto {
+    @NumberFieldOptional({ positive: true })
+    page: number = 1
 
-  @ApiPropertyOptional()
-  @IsNumber()
-  @Transform(({ value }) => parseInt(value, 10), { toClassOnly: true })
-  @IsOptional()
-  perPage?: number
+    @Transform(({ value }) => (pageType ? getPerPage(pageType, value) : DEFAULT_PAGE_SIZE), { toClassOnly: true })
+    @NumberFieldOptional({ positive: true })
+    perPage: number = DEFAULT_PAGE_SIZE
+  }
+
+  return DynamicPaginationDto
 }

@@ -48,6 +48,10 @@ async function bootstrap() {
   const apiPort = envService.getEnvNumber('API_PORT', 5000)
   const apiUrl = `${apiHost}:${apiPort}`
 
+  // TODO: gracefulShutdown
+  // TODO: swagger from transport (use proto mechanism to assign swagger decorators to controller)
+  // TODO: add redis to docker compose
+
   // * Setup Swagger
   if (!envService.isTestEnv() && !envService.isProductionEnv()) {
     const swaggerPath = 'swagger-ui'

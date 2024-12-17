@@ -4,23 +4,29 @@ import { PaginationResponseDto, getSortOrderFromQuery } from '@app/common'
 import { IOrderObject } from '@app/database'
 import { envService } from './get-env'
 
-export const PAGE_SIZE_TYPES = {
-  users: 'users'
+export enum PageTypes {
+  users = 'users',
+  conversations = 'conversations',
+  participants = 'participants',
+  messages = 'messages'
 }
 
-export const PAGE_SIZES = {
-  usersPageSize: envService.getEnvNumber('USERS_PAGE_SIZE', 50)
+export const DEFAULT_PAGE_SIZE = 50
+export const MAX_PAGE_SIZE = 200
+
+export const DEFAULT_PAGE_SIZES = {
+  [PageTypes.users]: envService.getEnvNumber('USERS_PAGE_SIZE', DEFAULT_PAGE_SIZE)
 }
 
 export const MAX_PAGE_SIZES = {
-  usersMaxPageSize: envService.getEnvNumber('USERS_MAX_PAGE_SIZE', 200)
+  [PageTypes.users]: envService.getEnvNumber('USERS_MAX_PAGE_SIZE', MAX_PAGE_SIZE)
 }
 
 export function getPerPage(type: string, querySize?: number) {
-  const maxSize = MAX_PAGE_SIZES[`${type}MaxPageSize`]
-  const defaultSize = PAGE_SIZES[`${type}PageSize`]
+  const defaultSize = DEFAULT_PAGE_SIZES[type] ?? DEFAULT_PAGE_SIZE
+  const maxSize = MAX_PAGE_SIZES[type] ?? MAX_PAGE_SIZE
 
-  return Number(querySize) && Number(querySize) <= maxSize ? Number(querySize) : defaultSize
+  return +querySize && +querySize <= maxSize ? +querySize : defaultSize
 }
 
 export function getPagesForResponse(totalCount: number, page: number, perPage: number) {

@@ -1,22 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsDefined, IsEmail, IsISO8601, IsString, MaxLength, MinLength } from 'class-validator'
-import { Match, PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH, VALIDATION_MESSAGES } from '@app/common'
+import { IsDefined, IsISO8601 } from 'class-validator'
+import { VALIDATION_MESSAGES } from '@app/common'
+import { EmailField, PasswordField, StringField } from '@app/common/validators'
 
 export class RegisterDto {
-  @ApiProperty({ example: 'John' })
-  @IsString()
-  @IsDefined()
+  @StringField({ example: 'John' })
   firstName: string
 
-  @ApiProperty({ example: 'Doe' })
-  @IsString()
-  @IsDefined()
+  @StringField({ example: 'Doe' })
   lastName: string
 
-  @ApiProperty({ example: 'example@gmail.com' })
-  @IsEmail()
-  @IsString()
-  @IsDefined()
+  @EmailField()
   email: string
 
   @ApiProperty({ example: '2004-04-14' })
@@ -24,27 +18,17 @@ export class RegisterDto {
   @IsDefined()
   birthDate: Date
 
-  @ApiProperty({ example: 'password' })
-  @MaxLength(PASSWORD_MAX_LENGTH, { message: VALIDATION_MESSAGES.lengthMustBeLessThan(PASSWORD_MAX_LENGTH) })
-  @MinLength(PASSWORD_MIN_LENGTH, { message: VALIDATION_MESSAGES.lengthMustBeGreaterThan(PASSWORD_MIN_LENGTH) })
-  @IsString()
-  @IsDefined()
+  @PasswordField()
   password: string
 
-  @ApiProperty({ example: 'password' })
-  @IsString()
-  @Match('password', { message: VALIDATION_MESSAGES.passwordMismatch })
-  @IsDefined()
+  @StringField({ example: 'password', matchKey: 'password', matchMessage: VALIDATION_MESSAGES.passwordMismatch })
   confirmPassword: string
 }
 
 export class LoginDto {
-  @ApiProperty({ example: 'example@gmail.com' })
-  @IsEmail()
-  @IsString()
+  @EmailField()
   email: string
 
-  @ApiProperty({ example: 'password' })
-  @IsString()
+  @StringField({ example: 'password' })
   password: string
 }

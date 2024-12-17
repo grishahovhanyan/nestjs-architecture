@@ -5,6 +5,8 @@ export enum SortDirections {
   descending = 'DESC'
 }
 
+export const DEFAULT_SORT_FIELDS = ['id']
+
 export const USERS_SORT_FIELDS = ['id', 'registeredAt']
 
 export function getSortOrderFromQuery(queryOrdering: string[], allowedSortFields: string[]): IOrderObject {
@@ -24,7 +26,7 @@ export function getSortOrderFromQuery(queryOrdering: string[], allowedSortFields
   return sortOrder
 }
 
-export const getOrderingDescription = (sortFields: string[]) => `
+export const getOrderDescription = (sortFields: string[] = DEFAULT_SORT_FIELDS) => `
     Allowed fields: ${sortFields.join(', ')}
 
     Examples: 
