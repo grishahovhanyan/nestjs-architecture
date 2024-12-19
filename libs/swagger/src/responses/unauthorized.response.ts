@@ -8,9 +8,7 @@ export function SwaggerUnauthorized401() {
       description: 'Unauthorized',
       schema: {
         type: 'object',
-        example: {
-          message: ERROR_MESSAGES.unauthorized401
-        }
+        properties: { message: { example: ERROR_MESSAGES.unauthorized401 } }
       }
     })
   )

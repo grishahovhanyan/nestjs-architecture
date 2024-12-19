@@ -1,6 +1,6 @@
 import { Get, Query, Param } from '@nestjs/common'
-import { SwaggerUsers } from '@app/swagger'
 
+import { Swagger } from '@app/swagger'
 import {
   paginatedResponse,
   NotFoundException,
@@ -17,13 +17,16 @@ import { GetUsersDto } from './dto/user.dto'
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @SwaggerUsers.getMe()
+  @Swagger({ response: UserResponseDto })
   @Get('me')
   async getMe(@RequestUser('id') currentUserId: number) {
     return await this.usersService.getById(currentUserId)
   }
 
-  @SwaggerUsers.index()
+  @Swagger({
+    response: UserResponseDto,
+    pagination: true
+  })
   @Get()
   async index(@RequestUser('id') currentUserId: number, @Query() query: GetUsersDto) {
     const { items, totalCount } = await this.usersService.getAndCount({
@@ -34,7 +37,7 @@ export class UsersController {
     return paginatedResponse(items, totalCount, query.page, query.perPage)
   }
 
-  @SwaggerUsers.find()
+  @Swagger({ response: UserResponseDto })
   @Get(':id')
   async find(@Param('id') userId: number) {
     const user = await this.usersService.getById(userId)

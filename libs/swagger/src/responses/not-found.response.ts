@@ -8,9 +8,7 @@ export function SwaggerNotFound404() {
       description: 'Not Found',
       schema: {
         type: 'object',
-        example: {
-          message: ERROR_MESSAGES.notFound404
-        }
+        properties: { message: { example: ERROR_MESSAGES.notFound404 } }
       }
     })
   )

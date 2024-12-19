@@ -1,17 +1,13 @@
 import { applyDecorators } from '@nestjs/common'
 import { ApiOkResponse } from '@nestjs/swagger'
 
-export function SwaggerSuccess200() {
+export function SwaggerSuccess200(options?: { description?: string }) {
   return applyDecorators(
     ApiOkResponse({
-      description: 'Success',
+      description: options?.description ?? 'Success',
       schema: {
         type: 'object',
-        properties: {
-          message: {
-            example: 'success'
-          }
-        }
+        properties: { message: { example: 'success' } }
       }
     })
   )

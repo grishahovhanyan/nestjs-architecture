@@ -1,8 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 
 import { User } from '@modules/users/entities/user.entity'
-import { HashService, ERROR_MESSAGES } from '@app/common'
+import { HashService, ERROR_MESSAGES, BadRequestException } from '@app/common'
 import { UsersService } from '@modules/users/users.service'
 
 @Injectable()

@@ -18,11 +18,14 @@ export class PagesDto {
   perPage: number
 }
 
-export class PaginationResponseDto {
+export class PaginationResponseDto<T = Record<string, unknown>> {
   @ApiProperty()
   @Type(() => PagesDto)
   pages: PagesDto
 
   @ApiProperty({ example: 30 })
   count: number
+
+  @ApiProperty()
+  items: T[]
 }

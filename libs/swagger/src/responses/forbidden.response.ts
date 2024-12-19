@@ -5,12 +5,10 @@ import { ERROR_MESSAGES } from '@app/common'
 export function SwaggerForbidden403() {
   return applyDecorators(
     ApiForbiddenResponse({
-      description: 'ForbiddenException',
+      description: 'Forbidden',
       schema: {
         type: 'object',
-        example: {
-          message: ERROR_MESSAGES.forbidden403
-        }
+        properties: { message: { example: ERROR_MESSAGES.forbidden403 } }
       }
     })
   )

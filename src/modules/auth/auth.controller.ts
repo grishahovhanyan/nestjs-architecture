@@ -1,5 +1,5 @@
 import { Body, HttpCode, Post } from '@nestjs/common'
-import { SwaggerAuth } from '@app/swagger'
+import { Swagger } from '@app/swagger'
 
 import {
   EnhancedController,
@@ -23,7 +23,10 @@ export class AuthController {
     private readonly usersService: UsersService
   ) {}
 
-  @SwaggerAuth.register()
+  @Swagger({
+    response: UserResponseDto,
+    400: true
+  })
   @Post('register')
   @HttpCode(200)
   @TransformResponse(UserResponseDto)
@@ -44,7 +47,10 @@ export class AuthController {
     return createdUser
   }
 
-  @SwaggerAuth.login()
+  @Swagger({
+    response: LoginResponseDto,
+    400: true
+  })
   @Post('login')
   @HttpCode(200)
   @TransformResponse(LoginResponseDto)
