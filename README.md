@@ -8,10 +8,10 @@ This project serves as a robust and scalable foundational architecture for build
 - 🗄️ **Database Integration:** Seamless integration with PostgreSQL, including pre-configured TypeORM support for efficient database interaction, along with migration management to handle schema changes.
 - ⚡ **Redis Integration:** Pre-configured Redis support for caching and real-time data processing needs.
 - 🔐 **Authentication and Authorization:** Built-in JWT-based authentication module to handle user sessions securely, including registration, login, and user management APIs.
-- 📄 **API Documentation:** Auto-generated API documentation using NestJS DTOs. Additionally, in another branch called `main-custom-swagger`, the project includes a custom Swagger implementation with details available in the `libs/swagger` folder.
+- 📄 **API Documentation:** Auto-generated API documentation using NestJS DTOs.
 - 🛡️ **Validation and Error Handling:** Utilizes `class-validator` for easy validation through decorators, alongside custom exceptions with tailored messages and validation responses to ensure robust error handling.
 - 🐳 **Docker Support:** Ready-to-use Docker and Docker Compose configurations for containerized deployment, ensuring consistency across different environments.
-- ☁️ **AWS Integration:** Built-in support for AWS SNS and SQS, offering powerful tools for asynchronous communication and event-driven architectures. (AWS integration is disabled by default. It can be activated within the `global.module`.)
+- ☁️ **AWS Integration:** Built-in support for AWS SNS and SQS, offering powerful tools for asynchronous communication and event-driven architectures.
 
 ## 🗂️ Project Structure
 
@@ -57,14 +57,7 @@ This project serves as a robust and scalable foundational architecture for build
       - Contains configuration and setup for Redis integration. Redis is used for caching and real-time data processing. This folder includes setup files to integrate Redis into the application, enhancing performance and enabling features like session management and caching.
 
   - **`swagger/`:**
-    - **`modules/`**: Contains Swagger configurations for different modules.
-      - **`auth/`**: Swagger configurations for the authentication module.
-      - **`users/`**: Swagger configurations for the users module.
     - **`responses/`**: Defines custom Swagger responses for different HTTP statuses.
-      - `forbidden.ts`: Swagger response for 403 Forbidden status.
-      - `not-found.ts`: Swagger response for 404 Not Found status.
-      - `success.ts`: Swagger response for successful operations.
-      - `unauthorized.ts`: Swagger response for 401 Unauthorized status.
     - `config.ts`: Contains Swagger configuration settings.
     - `index.ts`: Entry point for the Swagger configuration.
     - `utils.ts`: Utility functions for Swagger configuration.
