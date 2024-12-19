@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsDefined, IsISO8601 } from 'class-validator'
+import { IsDefined, IsString } from 'class-validator'
 import { VALIDATION_MESSAGES } from '@app/common'
 import { EmailField, PasswordField, StringField } from '@app/common/validators'
 
@@ -14,7 +14,7 @@ export class RegisterDto {
   email: string
 
   @ApiProperty({ example: '2004-04-14' })
-  @IsISO8601({}, { message: VALIDATION_MESSAGES.invalidISOFormat })
+  @IsString({ message: VALIDATION_MESSAGES.invalidISOFormat })
   @IsDefined()
   birthDate: Date
 
