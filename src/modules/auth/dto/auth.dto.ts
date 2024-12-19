@@ -14,9 +14,9 @@ export class RegisterDto {
   email: string
 
   @ApiProperty({ example: '2004-04-14' })
-  @IsString({ message: VALIDATION_MESSAGES.invalidISOFormat })
+  @IsString()
   @IsDefined()
-  birthDate: Date
+  birthDate: string
 
   @PasswordField()
   password: string
