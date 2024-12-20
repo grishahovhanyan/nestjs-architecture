@@ -18,9 +18,17 @@ class EnvService {
     return value !== 'true' && value !== 'false' ? defaultValue : value === 'true'
   }
 
-  public getNodeEnv() {
+  public getApiUrl(defaultPort: number = 5000) {
+    const apiHost = this.getEnvString('API_HOST')
+    const apiPort = this.getEnvNumber('API_PORT', defaultPort)
+    const apiUrl = `${apiHost}:${apiPort}`
+
+    return { apiHost, apiPort, apiUrl }
+  }
+
+  public getNodeEnv(): NodeEnvs {
     const processNodeEnv = this.getEnvString('NODE_ENV')
-    return Object.keys(NodeEnvs).includes(processNodeEnv) ? processNodeEnv : NodeEnvs.development
+    return (Object.keys(NodeEnvs).includes(processNodeEnv) ? processNodeEnv : NodeEnvs.development) as NodeEnvs
   }
 
   public isTestEnv() {
