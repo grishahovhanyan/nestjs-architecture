@@ -1,15 +1,10 @@
 import { Body, HttpCode, Post } from '@nestjs/common'
 import { Swagger } from '@app/swagger'
 
-import {
-  EnhancedController,
-  TransformResponse,
-  BadRequestException,
-  ERROR_MESSAGES,
-  UserResponseDto,
-  LoginResponseDto
-} from '@app/common'
+import { EnhancedController, TransformResponse, BadRequestException, ERROR_MESSAGES } from '@app/common'
 import { LoginDto, RegisterDto } from './dto/auth.dto'
+import { LoginResponseDto } from './dto/auth-response.dto'
+import { UserResponseDto } from '@modules/users/dto/user-response.dto'
 
 import { NotificationQueueService } from '@infra/queues'
 import { AuthService } from './auth.service'
