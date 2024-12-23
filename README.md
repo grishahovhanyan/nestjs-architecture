@@ -58,18 +58,42 @@ This project serves as a robust and scalable foundational architecture for build
 
   - **`swagger/`:**
     - **`responses/`**: Defines custom Swagger responses for different HTTP statuses.
-    - `config.ts`: Contains Swagger configuration settings.
-    - `index.ts`: Entry point for the Swagger configuration.
-    - `utils.ts`: Utility functions for Swagger configuration.
-    - `tsconfig.lib.json`: TypeScript configuration specific to the Swagger library.
+      - `config.ts`: Contains Swagger configuration settings.
+      - `index.ts`: Entry point for the Swagger configuration.
+      - `swagger.decorator.ts`: A decorator to simplify Swagger documentation creation for routes.
+      - `swagger.type.ts`: Contains all type definitions used in the Swagger configuration.
+      - `tsconfig.lib.json`: TypeScript configuration specific to the Swagger library.
 
 - **`src/` :**
 
-  - The `src` folder is the core of the application. It contains the main application entry point and the organization of various features through modules.
+  The `src` folder is the core of the application. It contains the main application entry point and the organization of various features through modules.
 
   - **`main.ts:`** This file is the entry point of the NestJS application. It initializes the NestJS application by creating an instance of the `NestFactory` and setting up the application module. It is responsible for bootstrapping the entire application and configuring global settings, such as middlewares and exception filters.
 
-  - **`modules/` :** Houses all the application modules, each encapsulating a specific feature or domain of the application. Modules in this folder adhere to the modular design principles of NestJS, promoting separation of concerns and code reusability. Each module typically includes its own set of controllers, services, and providers, organizing related functionality and business logic into cohesive units.
+  - **`modules/`:** Houses all the application modules, each encapsulating a specific feature or domain of the application. Modules in this folder adhere to the modular design principles of NestJS, promoting separation of concerns and code reusability. Each module typically includes its own set of controllers, services, and providers, organizing related functionality and business logic into cohesive units.
+
+  - **`infrastructure/`:** Centralizes foundational modules and services that are globally required across the NestJS application.
+
+    - **`infrastructure.module.ts`:** A centralized module for infrastructure services and modules.
+
+    - **`aws/`:** Contains AWS-specific modules and services:
+
+      - **`aws.module.ts`:** The AWS module aggregates and organizes services related to AWS integrations.
+      - **`sns/`:** Handles SNS connection and provides `SnsService` for SNS communication.
+      - **`sqs/`:** Manages SQS connection and polling.
+
+    - **`queues/`:** Implements **BullMQ** integration in the NestJS application for managing job queues and processing tasks asynchronously.
+
+      - **`queue.module.ts`:** The `QueueModule` is the central module for configuring and managing **BullMQ** queues within the application. It handles the integration with Redis and organizes queue-related modules for modular and scalable design.
+
+      - **`queue.service.ts`:** This file defines an abstract class `AbstractQueueService` that provides a base implementation for managing queues using **BullMQ**. It serves as a reusable foundation for creating specific queue services in the application.
+
+      - **`queue.enum.ts`:** Defines enumerations related to queues, such as queue names or job-related statuses, to maintain consistent references across the application.
+
+      - **`index.ts`:** Re-exports entities and services from this folder to simplify imports elsewhere in the application.
+
+      - **`notification/`:**
+        This folder contains the implementation of a working example for integrating the application with a queue using **BullMQ**. It demonstrates how to produce and process jobs, making it a reference point for building queue-based communication in the application (for working examples you can check auth.controller).
 
 - **`docker/`:**
 
