@@ -18,10 +18,7 @@ export class UsersController {
     return await this.usersService.getById(currentUserId)
   }
 
-  @Swagger({
-    response: UserResponseDto,
-    pagination: true
-  })
+  @Swagger({ response: UserResponseDto, pagination: true })
   @Get()
   async index(@RequestUser('id') currentUserId: number, @Query() query: GetUsersDto) {
     const { items, totalCount } = await this.usersService.getAndCount({

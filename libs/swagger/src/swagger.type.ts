@@ -6,6 +6,7 @@ export interface SwaggerOptions<R = unknown> {
   isArray?: boolean
   operation?: string
   description?: string
+  errorResponses?: number[]
   201?: boolean
   400?: boolean
   401?: boolean

@@ -18,10 +18,7 @@ export class AuthController {
     private readonly usersService: UsersService
   ) {}
 
-  @Swagger({
-    response: UserResponseDto,
-    400: true
-  })
+  @Swagger({ response: UserResponseDto, 400: true })
   @Post('register')
   @HttpCode(200)
   @TransformResponse(UserResponseDto)
@@ -42,10 +39,7 @@ export class AuthController {
     return createdUser
   }
 
-  @Swagger({
-    response: LoginResponseDto,
-    400: true
-  })
+  @Swagger({ response: LoginResponseDto, errorResponses: [400] })
   @Post('login')
   @HttpCode(200)
   @TransformResponse(LoginResponseDto)

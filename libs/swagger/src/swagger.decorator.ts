@@ -12,7 +12,7 @@ import {
 } from './responses'
 
 export function Swagger(options: SwaggerOptions): MethodDecorator {
-  const { response, operation, description } = options
+  const { response, operation, description, errorResponses = [] } = options
 
   const decorators = []
 
@@ -26,19 +26,19 @@ export function Swagger(options: SwaggerOptions): MethodDecorator {
     decorators.push(options[201] ? SwaggerCreated201({ description }) : SwaggerSuccess200({ description }))
   }
 
-  if (options[400]) {
+  if (errorResponses.includes(400) || options[400]) {
     decorators.push(SwaggerBadRequest400())
   }
 
-  if (options[401]) {
+  if (errorResponses.includes(401) || options[401]) {
     decorators.push(SwaggerUnauthorized401())
   }
 
-  if (options[403]) {
+  if (errorResponses.includes(403) || options[403]) {
     decorators.push(SwaggerForbidden403())
   }
 
-  if (options[404]) {
+  if (errorResponses.includes(404) || options[404]) {
     decorators.push(SwaggerNotFound404())
   }
 
