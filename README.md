@@ -84,6 +84,8 @@ This project serves as a robust and scalable foundational architecture for build
 
     - **`queues/`:** Implements **BullMQ** integration in the NestJS application for managing job queues and processing tasks asynchronously.
 
+      - **`Bull Board UI Integration`:** The package **@bull-board/nestjs** is used to render the Bull queue board UI at the `/api/v1/admin/bull-board` route. This UI allows for easy monitoring and management of queues, providing insights into the jobs being processed, their status, and other key metrics. (To access the Bull Board UI, you need to set `BULL_ADMIN_USERNAME` and `BULL_ADMIN_PASSWORD` environment variables in the .env file.)
+
       - **`queue.module.ts`:** The `QueueModule` is the central module for configuring and managing **BullMQ** queues within the application. It handles the integration with Redis and organizes queue-related modules for modular and scalable design.
 
       - **`queue.service.ts`:** This file defines an abstract class `AbstractQueueService` that provides a base implementation for managing queues using **BullMQ**. It serves as a reusable foundation for creating specific queue services in the application.
