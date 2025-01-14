@@ -1,6 +1,6 @@
 {
   "name": "nestjs-architecture",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "Nestjs Architecture",
   "author": "Grisha Hovhanyan",
   "scripts": {
@@ -20,6 +20,9 @@
   },
   "dependencies": {
     "@aws-sdk/client-sns": "^3.696.0",
+    "@bull-board/api": "^6.6.1",
+    "@bull-board/express": "^6.6.1",
+    "@bull-board/nestjs": "^6.6.1",
     "@nestjs/bullmq": "^10.2.3",
     "@nestjs/common": "^10.4.8",
     "@nestjs/config": "^3.3.0",
@@ -36,6 +39,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "compression": "^1.7.5",
+    "express-basic-auth": "^1.2.1",
     "helmet": "^8.0.0",
     "ioredis": "^5.4.1",
     "joi": "^17.13.3",
