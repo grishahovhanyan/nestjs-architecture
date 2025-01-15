@@ -3,10 +3,7 @@ import { IOrderObject } from '@app/database'
 import { envService } from './get-env'
 
 export enum PageTypes {
-  users = 'users',
-  conversations = 'conversations',
-  participants = 'participants',
-  messages = 'messages'
+  users = 'users'
 }
 
 export const DEFAULT_PAGE_SIZE = 50
