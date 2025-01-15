@@ -33,6 +33,6 @@
       "@app/swagger/*": ["libs/swagger/src/*"]
     }
   },
-  "include": ["src/**/*.ts", "libs/**/*.ts"],
+  "include": ["src/**/*.ts", "libs/**/*.ts", ".hygen/**/*.js", ".hygen.js"],
   "exclude": ["node_modules", "dist"]
 }
