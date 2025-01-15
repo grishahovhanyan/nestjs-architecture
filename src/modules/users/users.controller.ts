@@ -2,8 +2,7 @@ import { Get, Query, Param } from '@nestjs/common'
 
 import { Swagger } from '@app/swagger'
 import { paginatedResponse, NotFoundException, EnhancedController, RequestUser, TransformResponse } from '@app/common'
-import { GetUsersDto } from './dto/user.dto'
-import { UserResponseDto } from './dto/user-response.dto'
+import { UserResponseDto, GetUsersDto } from './dto'
 
 import { UsersService } from './users.service'
 

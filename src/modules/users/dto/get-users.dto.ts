@@ -22,10 +22,3 @@ export class GetUsersDto extends IntersectionType(
   userIdsToExclude?: number[]
   userIdsToInclude?: number[]
 }
-
-export class CreateUserDto {
-  firstName: string
-  lastName: string
-  email: string
-  password: string
-}

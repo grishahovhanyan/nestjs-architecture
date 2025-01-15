@@ -24,11 +24,3 @@ export class RegisterDto {
   @StringField({ example: 'password', matchKey: 'password', matchMessage: VALIDATION_MESSAGES.passwordMismatch })
   confirmPassword: string
 }
-
-export class LoginDto {
-  @EmailField()
-  email: string
-
-  @StringField({ example: 'password' })
-  password: string
-}
