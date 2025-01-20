@@ -3,7 +3,7 @@ import { PageTypes, PaginationDto, SearchDto, OrderDto, USERS_SORT_FIELDS } from
 import { NumberFieldOptional, StringFieldOptional } from '@app/common/validators'
 
 export class GetUsersDto extends IntersectionType(
-  PaginationDto(PageTypes.messages),
+  PaginationDto(PageTypes.users),
   SearchDto,
   OrderDto(USERS_SORT_FIELDS)
 ) {
