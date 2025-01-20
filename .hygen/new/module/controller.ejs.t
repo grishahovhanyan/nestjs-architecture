@@ -7,6 +7,7 @@ skip_if: <%= !resources.includes('Controller') %>
   ModuleName = h.ModuleName(name)
 
   ControllerName = h.ControllerName(name)
+  ControllerPrefix = h.toDashCase(h.pascalPluralize(name))
 
   ServiceName = h.ServiceName(name)
   serviceFileName = h.serviceFileName(name)
@@ -38,7 +39,7 @@ import { EnhancedController, RequestUser, TransformResponse } from '@app/common'
 import { <%= ResponseDtoName %>, <%= CreateDtoName %>, <%= GetDtoName %>, <%= UpdateDtoName %> } from './<%= dtosFolderName %>'
 import { <%= ServiceName %> } from './<%= serviceFileName %>'
 
-@EnhancedController('<%= h.pascalPluralize(name) %>')
+@EnhancedController('<%= ControllerPrefix %>')
 @TransformResponse(<%= ResponseDtoName %>)
 export class <%= ControllerName %> {
   constructor(private readonly <%= serviceParamName %>: <%= ServiceName %>) {}

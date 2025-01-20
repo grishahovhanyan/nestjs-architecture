@@ -32,4 +32,4 @@ import { <%= ServiceName %> } from './<%= serviceFileName %>'
   providers: [<%= RepositoryName %>, <%= ServiceName %>],
   exports: [<%= ServiceName %>]
 })
-export class UsersModule {}
+export class <%= ModuleName %> {}

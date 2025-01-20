@@ -65,7 +65,6 @@ module.exports = {
         }
       ])
       .then((answer) => {
-        // For debugging
         return answer
       })
   }
