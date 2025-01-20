@@ -14,6 +14,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "generate:module": "hygen new module",
+    "generate:queue": "hygen new queue",
     "typeorm": "npx typeorm-ts-node-commonjs -d ./libs/database/src/postgres/data-source.ts",
     "migrations:create": "npx typeorm-ts-node-commonjs migration:create ./libs/database/src/postgres/migrations/$npm_config_name",
     "migrations:generate": "npm run typeorm -- migration:generate ./libs/database/src/postgres/migrations/$npm_config_name",
