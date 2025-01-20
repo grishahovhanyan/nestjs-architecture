@@ -28,6 +28,6 @@ export class NotificationQueueService extends AbstractQueueService implements On
   }
 
   public async registrationSuccess(payload: { fullName: string; email: string }) {
-    return await this.addJob(NotificationJobNames.registrationSuccess, payload)
+    return this.addJob(NotificationJobNames.registrationSuccess, payload)
   }
 }

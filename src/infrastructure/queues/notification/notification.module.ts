@@ -4,15 +4,15 @@ import { BullBoardModule } from '@bull-board/nestjs'
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'
 
 import { QueueNames } from '../queue.enum'
+import { NotificationQueueProcessor } from './notification.processor'
 import { NotificationQueueService } from './notification.service'
-import { NotificationProcessor } from './notification.processor'
 
 @Module({
   imports: [
     BullModule.registerQueue({ name: QueueNames.notification }),
     BullBoardModule.forFeature({ name: QueueNames.notification, adapter: BullMQAdapter })
   ],
-  providers: [NotificationQueueService, NotificationProcessor],
+  providers: [NotificationQueueProcessor, NotificationQueueService],
   exports: [NotificationQueueService]
 })
 export class NotificationQueueModule {}

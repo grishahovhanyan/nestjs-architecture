@@ -6,14 +6,13 @@ import { QueueNames } from '../queue.enum'
 import { NotificationJobNames } from './enums'
 
 @Processor(QueueNames.notification)
-export class NotificationProcessor extends WorkerHost {
-  private readonly logger = new Logger(NotificationProcessor.name)
+export class NotificationQueueProcessor extends WorkerHost {
+  private readonly logger = new Logger(NotificationQueueProcessor.name)
 
   async process(job: Job) {
     switch (job.name) {
       case NotificationJobNames.registrationSuccess:
-        await this.handleRegistrationSuccess(job)
-        break
+        return this.handleRegistrationSuccess(job)
       default:
         this.logger.warn(`⚠️ Job "${job.name}" is not handled.`)
         break
