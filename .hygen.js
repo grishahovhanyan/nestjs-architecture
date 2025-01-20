@@ -3,33 +3,39 @@ module.exports = {
 	templates: `${__dirname}/.hygen`,
 	helpers: {
 		/* ******* Helpers ******* */
-		dasherize(name) {
-			return this.inflection.dasherize(name).toLowerCase()
+		dasherize(str) {
+			return this.inflection.dasherize(str).toLowerCase()
 		},
-		singularize(name) {
+		singularize(str) {
 			// user -> users
-			return this.inflection.singularize(name)
+			return this.inflection.singularize(str)
 		},
-		pluralize(name) {
+		pluralize(str) {
 			// user -> users
-			return this.inflection.pluralize(this.dasherize(name))
+			return this.inflection.pluralize(str)
+		},
+		toDashCase(str) {
+			// Convert any case to dash-case
+			return str
+				.replace(/([a-z])([A-Z])/g, '$1-$2')
+				.replace(/_/g, '-')
+				.toLowerCase()
 		},
 
-		pascalSingularize(name) {
+		pascalSingularize(str) {
 			// users -> User
-			return this.changeCase.pascal(this.singularize(name))
+			return this.changeCase.pascal(this.singularize(str))
 		},
-		pascalPluralize(name) {
+		pascalPluralize(str) {
 			// user -> Users
-			return this.changeCase.pascal(this.pluralize(name))
+			return this.changeCase.pascal(this.pluralize(str))
 		},
+
+		/* ******* ******* ******* New `Module` ******* ******* ******* */
+		/* ******* ******* ******* ******* ******* ******* ******* ******* */
 
 		instanceName(name) {
 			return this.changeCase.camel(this.EntityName(name))
-		},
-
-		folderName(name) {
-			return this.pluralize(name)
 		},
 
 		/* ******* Module, controller, service, repository names ******* */
@@ -48,19 +54,19 @@ module.exports = {
 
 		/* ******* Module, controller, service, repository folder/file names ******* */
 		moduleFolderName(name) {
-			return `${this.pluralize(name)}`
+			return `${this.pluralize(this.toDashCase(name))}`
 		},
 		moduleFileName(name) {
-			return `${this.folderName(name)}.module`
+			return `${this.moduleFolderName(name)}.module`
 		},
 		controllerFileName(name) {
-			return `${this.folderName(name)}.controller`
+			return `${this.moduleFolderName(name)}.controller`
 		},
 		repositoryFileName(name) {
-			return `${this.folderName(name)}.repository`
+			return `${this.moduleFolderName(name)}.repository`
 		},
 		serviceFileName(name) {
-			return `${this.folderName(name)}.service`
+			return `${this.moduleFolderName(name)}.service`
 		},
 
 		/* ******* Entity and table names ******* */
@@ -70,7 +76,7 @@ module.exports = {
 
 		TableName(name) {
 			name = name.replace(/-/g, '_')
-			console.log(name, '<name')
+
 			return this.inflection.pluralize(
 				this.inflection
 					.underscore(name)
@@ -82,7 +88,7 @@ module.exports = {
 		},
 
 		entityFileName(name) {
-			return `${this.dasherize(this.singularize(name))}.entity`
+			return `${this.toDashCase(this.singularize(name))}.entity`
 		},
 
 		/* ******* Dtos ******* */
@@ -114,6 +120,54 @@ module.exports = {
 		},
 		updateDtoFileName(name) {
 			return `update-${this.singularize(name)}.dto`
+		},
+
+		/* ******* ******* ******* New `Queue` ******* ******* ******* */
+		/* ******* ******* ******* ******* ******* ******* ******* ******* */
+
+		QueueNameEnumKey(queueName) {
+			queueName = queueName.replace(/-/g, '_')
+
+			return this.inflection
+				.underscore(queueName)
+				.toLowerCase()
+		},
+
+		queueJobNamesEnumFileName(queueName) {
+			return `${this.queueFolderName(queueName)}-job-names.enum`
+		},
+		QueueJobNamesEnumName(queueName) {
+			return `${this.changeCase.pascal(queueName)}JobNames`
+		},
+
+		queueParamName(queueName) {
+			return `${this.changeCase.camel(queueName)}Queue`
+		},
+
+		/* ******* Queue module, processor, service names ******* */
+		QueueModuleName(queueName) {
+			return `${this.changeCase.pascal(queueName)}QueueModule`
+		},
+		QueueProcessorName(queueName) {
+			return `${this.changeCase.pascal(queueName)}Processor`
+		},
+		QueueServiceName(queueName) {
+			return `${this.changeCase.pascal(queueName)}QueueService`
+		},
+
+		/* ******* Queue module, processor, service folder/file names ******* */
+		queueFolderName(queueName) {
+			return this.toDashCase(queueName)
+		},
+
+		queueModuleFileName(queueName) {
+			return `${this.queueFolderName(queueName)}.module`
+		},
+		queueProcessorFileName(queueName) {
+			return `${this.queueFolderName(queueName)}.processor`
+		},
+		queueServiceFileName(queueName) {
+			return `${this.queueFolderName(queueName)}.service`
 		},
 	}
 }
