@@ -3,6 +3,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     container_name: nest_app
     restart: always
     entrypoint: 'npm run start:debug'
@@ -22,6 +24,10 @@ services:
       POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       POSTGRES_DATABASE: $POSTGRES_DATABASE
+      REDIS_HOST: redis
+      REDIS_PORT: $REDIS_PORT
+      REDIS_USERNAME: $REDIS_USERNAME
+      REDIS_PASSWORD: $REDIS_PASSWORD
     networks:
       - nest_app_network
 
@@ -63,6 +69,23 @@ services:
       POSTGRES_DATABASE: $POSTGRES_DATABASE
     networks:
       - nest_app_network
+
+  redis:
+    image: redis
+    container_name: nest_app_redis
+    environment:
+      REDIS_USERNAME: $REDIS_USERNAME
+      REDIS_PASSWORD: $REDIS_PASSWORD
+    ports:
+      - '6380:$REDIS_PORT'
+    networks:
+      - nest_app_network
+    command: redis-server --requirepass $REDIS_PASSWORD
+    healthcheck:
+      test: ['CMD', 'redis-cli', '-h', 'localhost', '-a', '$REDIS_PASSWORD', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
   nest_app_network:
