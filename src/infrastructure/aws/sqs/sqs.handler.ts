@@ -1,8 +1,8 @@
+import { Message } from '@aws-sdk/client-sqs'
 import { Injectable, Logger } from '@nestjs/common'
 import { SqsConsumerEventHandler, SqsMessageHandler } from '@ssut/nestjs-sqs'
-import { Message } from '@aws-sdk/client-sqs'
 
-import { SQS_QUEUE_NAME, SQS_BATCH_POLLING } from '@app/common'
+import { SQS_BATCH_POLLING, SQS_QUEUE_NAME } from '@app/common'
 
 @Injectable()
 export class SqsHandler {

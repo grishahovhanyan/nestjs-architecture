@@ -1,5 +1,6 @@
 import { applyDecorators } from '@nestjs/common'
 import { ApiUnauthorizedResponse } from '@nestjs/swagger'
+
 import { ERROR_MESSAGES } from '@app/common'
 
 export function SwaggerUnauthorized401() {

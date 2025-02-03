@@ -1,11 +1,12 @@
-import { SwaggerModule } from '@nestjs/swagger'
 import { INestApplication, Logger } from '@nestjs/common'
 import { NestExpressApplication } from '@nestjs/platform-express'
-import helmet from 'helmet'
+import { SwaggerModule } from '@nestjs/swagger'
 import compression from 'compression'
+import helmet from 'helmet'
 
 import { SWAGGER_CONFIGS, SWAGGER_OPTIONS } from '@app/swagger'
 import { ValidationPipe } from '@app/common'
+
 import { envService } from './get-env'
 
 class AppUtilsService {

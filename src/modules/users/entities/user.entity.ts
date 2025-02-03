@@ -1,8 +1,8 @@
 import { Exclude, Expose } from 'class-transformer'
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
+import { calculateAge, PasswordTransformer } from '@app/common'
 import { DbTables } from '@app/database'
-import { PasswordTransformer, calculateAge } from '@app/common'
 
 @Entity(DbTables.users)
 export class User {
@@ -27,6 +27,12 @@ export class User {
     nullable: false
   })
   password: string
+
+  @Column({ nullable: true })
+  token: string
+
+  @Column({ type: 'timestamp', nullable: true })
+  tokenExpireDate: Date
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP(6)' })
   registeredAt: Date

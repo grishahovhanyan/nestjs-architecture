@@ -1,6 +1,7 @@
 import { Transform } from 'class-transformer'
-import { NumberFieldOptional } from '../validators'
+
 import { DEFAULT_PAGE_SIZE, getPerPage, PageTypes } from '../utils'
+import { NumberFieldOptional } from '../validators'
 
 export function PaginationDto(pageType?: PageTypes) {
   class DynamicPaginationDto {

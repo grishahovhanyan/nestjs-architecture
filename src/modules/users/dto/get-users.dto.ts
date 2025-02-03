@@ -1,5 +1,6 @@
 import { IntersectionType } from '@nestjs/swagger'
-import { PageTypes, PaginationDto, SearchDto, OrderDto, USERS_SORT_FIELDS } from '@app/common'
+
+import { OrderDto, PageTypes, PaginationDto, SearchDto, USERS_SORT_FIELDS } from '@app/common'
 import { NumberFieldOptional, StringFieldOptional } from '@app/common/validators'
 
 export class GetUsersDto extends IntersectionType(

@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
-import { User } from './entities/user.entity'
-import { CreateUserDto, GetUsersDto } from './dto'
+import { paginatedResponse } from '@app/common'
 
+import { CreateUserDto, GetUsersDto } from './dto'
+import { User } from './entities/user.entity'
 import { UsersRepository } from './users.repository'
 
 @Injectable()
@@ -14,6 +15,28 @@ export class UsersService {
     @InjectRepository(User)
     private readonly repo: Repository<User> // Can be used to create queryBuilder
   ) {}
+
+  // ******* Controller Handlers *******
+  async index(currentUserId: number, query: GetUsersDto) {
+    const { items, totalCount } = await this.getAndCount({
+      ...query,
+      userIdsToExclude: [currentUserId]
+    })
+
+    return paginatedResponse(items, totalCount, query.page, query.perPage)
+  }
+
+  async find(userId: number) {
+    const user = await this.getById(userId)
+
+    if (!user) {
+      throw new NotFoundException()
+    }
+
+    return user
+  }
+
+  // ******* ******* ******* *******
 
   async create(createUserInput: CreateUserDto): Promise<User> {
     return await this.usersRepository.create(createUserInput)
@@ -89,5 +112,14 @@ export class UsersService {
 
   async getByEmail(email: string): Promise<User | null> {
     return await this.usersRepository.findOne({ email })
+  }
+
+  async getByToken(token: string): Promise<User | null> {
+    return await this.usersRepository.findOne({ token })
+  }
+
+  async updateById(userid: number, updateUserDto: Partial<User>): Promise<User | null> {
+    await this.usersRepository.update({ id: userid }, updateUserDto)
+    return await this.getById(userid)
   }
 }

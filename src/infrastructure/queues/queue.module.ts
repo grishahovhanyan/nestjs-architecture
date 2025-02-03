@@ -1,11 +1,13 @@
-import { Module } from '@nestjs/common'
-import { BullModule } from '@nestjs/bullmq'
 import { ExpressAdapter } from '@bull-board/express'
 import { BullBoardModule } from '@bull-board/nestjs'
+import { BullModule } from '@nestjs/bullmq'
+import { Module } from '@nestjs/common'
 import basicAuth from 'express-basic-auth'
 
 import { envService } from '@app/common'
 import { REDIS_CONFIG } from '@app/database'
+
+import { MailQueueModule } from './mail/mail.module'
 import { NotificationQueueModule } from './notification/notification.module'
 
 /*
@@ -17,7 +19,7 @@ are globally available to other modules in the application.
 
 Add additional queue modules here as your application grows.
 */
-const queueModules = [NotificationQueueModule]
+const queueModules = [MailQueueModule, NotificationQueueModule]
 
 @Module({
   imports: [

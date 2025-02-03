@@ -1,8 +1,8 @@
 import { Logger, Module } from '@nestjs/common'
 import { createClient, RedisClientOptions } from 'redis'
 
-import { REDIS_CONFIGS_KEY, REDIS_CLIENT_KEY } from './constants'
 import { REDIS_CONFIG } from './config'
+import { REDIS_CLIENT_KEY, REDIS_CONFIGS_KEY } from './constants'
 import { RedisService } from './redis.service'
 
 @Module({

@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common'
-import { BullModule } from '@nestjs/bullmq'
-import { BullBoardModule } from '@bull-board/nestjs'
 import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'
+import { BullBoardModule } from '@bull-board/nestjs'
+import { BullModule } from '@nestjs/bullmq'
+import { Module } from '@nestjs/common'
 
 import { QueueNames } from '../queue.enum'
 import { NotificationQueueProcessor } from './notification.processor'

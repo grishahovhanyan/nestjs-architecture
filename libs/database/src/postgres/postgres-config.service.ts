@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm'
+import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm'
+
 import { POSTGRES_CONFIGS } from './config'
 
 @Injectable()

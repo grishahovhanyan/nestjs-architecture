@@ -1,9 +1,9 @@
-import { Get, Query, Param } from '@nestjs/common'
+import { Get, Param, Query } from '@nestjs/common'
 
 import { Swagger } from '@app/swagger'
-import { paginatedResponse, NotFoundException, EnhancedController, RequestUser, TransformResponse } from '@app/common'
-import { UserResponseDto, GetUsersDto } from './dto'
+import { EnhancedController, RequestUser, TransformResponse } from '@app/common'
 
+import { GetUsersDto, UserResponseDto } from './dto'
 import { UsersService } from './users.service'
 
 @EnhancedController('users')
@@ -13,30 +13,19 @@ export class UsersController {
 
   @Swagger({ response: UserResponseDto })
   @Get('me')
-  async getMe(@RequestUser('id') currentUserId: number) {
-    return await this.usersService.getById(currentUserId)
+  getMe(@RequestUser('id') currentUserId: number) {
+    return this.usersService.getById(currentUserId)
   }
 
   @Swagger({ response: UserResponseDto, pagination: true })
   @Get()
-  async index(@RequestUser('id') currentUserId: number, @Query() query: GetUsersDto) {
-    const { items, totalCount } = await this.usersService.getAndCount({
-      ...query,
-      userIdsToExclude: [currentUserId]
-    })
-
-    return paginatedResponse(items, totalCount, query.page, query.perPage)
+  index(@RequestUser('id') currentUserId: number, @Query() query: GetUsersDto) {
+    return this.usersService.index(currentUserId, query)
   }
 
   @Swagger({ response: UserResponseDto })
   @Get(':id')
-  async find(@Param('id') userId: number) {
-    const user = await this.usersService.getById(userId)
-
-    if (!user) {
-      throw new NotFoundException()
-    }
-
-    return user
+  find(@Param('id') userId: number) {
+    return this.usersService.find(userId)
   }
 }

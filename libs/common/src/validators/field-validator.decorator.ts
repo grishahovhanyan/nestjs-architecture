@@ -23,16 +23,16 @@ import {
   type ValidationOptions
 } from 'class-validator'
 
-import { ToBoolean } from './transform.decorator'
-import { Match } from './match.decorator'
 import { PASSWORD_MAX_LENGTH, PASSWORD_MIN_LENGTH, VALIDATION_MESSAGES } from '../constants'
+import { Match } from './match.decorator'
+import { ToBoolean } from './transform.decorator'
 import {
+  IBooleanFieldOptions,
+  IEnumFieldOptions,
   INumberFieldOptions,
   INumberIdsFieldOptions,
-  IStringFieldOptions,
   IPasswordFieldOptions,
-  IBooleanFieldOptions,
-  IEnumFieldOptions
+  IStringFieldOptions
 } from './validators.interface'
 
 export function IsUndefinable(options?: ValidationOptions): PropertyDecorator {

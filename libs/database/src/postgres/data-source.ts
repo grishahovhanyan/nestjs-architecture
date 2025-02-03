@@ -1,7 +1,7 @@
-import 'tsconfig-paths/register'
-import 'dotenv/config'
 import * as path from 'path'
 import { DataSource } from 'typeorm'
+import 'tsconfig-paths/register'
+import 'dotenv/config'
 
 const entities = [path.join(process.cwd(), 'src', 'modules/**/entities/*.entity{.ts,.js}')]
 const migrations = [path.join(__dirname, 'migrations', '*{.ts,.js}')]

@@ -1,7 +1,7 @@
-import { addTransactionalDataSource } from 'typeorm-transactional'
-import { TypeOrmModule } from '@nestjs/typeorm'
 import { Logger, Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
 import { DataSource } from 'typeorm'
+import { addTransactionalDataSource } from 'typeorm-transactional'
 
 import { PostgresConfigService } from './postgres-config.service'
 

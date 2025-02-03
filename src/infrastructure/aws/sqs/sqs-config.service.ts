@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { SqsModuleOptionsFactory, SqsOptions } from '@ssut/nestjs-sqs/dist/sqs.types'
+
 import {
-  SQS_URL,
-  SQS_QUEUE_NAME,
-  SQS_WAIT_TIME_SECONDS,
-  SQS_VISIBILITY_TIMEOUT,
+  SQS_AUTHENTICATION_ERROR_TIMEOUT,
   SQS_POLLING_WAIT_TIME_MS,
-  SQS_AUTHENTICATION_ERROR_TIMEOUT
+  SQS_QUEUE_NAME,
+  SQS_URL,
+  SQS_VISIBILITY_TIMEOUT,
+  SQS_WAIT_TIME_SECONDS
 } from '@app/common'
 
 @Injectable()

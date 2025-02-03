@@ -1,6 +1,7 @@
 import { applyDecorators } from '@nestjs/common'
 import { ApiBadRequestResponse } from '@nestjs/swagger'
-import { VALIDATION_MESSAGES, ERROR_MESSAGES } from '@app/common'
+
+import { ERROR_MESSAGES, VALIDATION_MESSAGES } from '@app/common'
 
 export function SwaggerBadRequest400() {
   return applyDecorators(
@@ -11,15 +12,15 @@ export function SwaggerBadRequest400() {
         oneOf: [
           {
             properties: {
-              FIELD: {
-                example: [VALIDATION_MESSAGES.required, VALIDATION_MESSAGES.invalidEmail, '...']
+              message: {
+                example: `${ERROR_MESSAGES.userAlreadyExists} OR ${ERROR_MESSAGES.invalidEmailPassword} ...`
               }
             }
           },
           {
             properties: {
-              message: {
-                example: `${ERROR_MESSAGES.userAlreadyExists} OR ${ERROR_MESSAGES.userAlreadyExists} ...`
+              FIELD: {
+                example: [VALIDATION_MESSAGES.required, VALIDATION_MESSAGES.invalidEmail, '...']
               }
             }
           }

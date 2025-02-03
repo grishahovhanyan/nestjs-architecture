@@ -1,5 +1,5 @@
-import * as path from 'path'
 import { ConfigService } from '@nestjs/config'
+import * as path from 'path'
 import { DataSourceOptions } from 'typeorm'
 
 const configService = new ConfigService()

@@ -1,8 +1,7 @@
-import 'dotenv/config'
-import { initializeTransactionalContext } from 'typeorm-transactional'
-import { NestExpressApplication } from '@nestjs/platform-express'
-import { NestFactory } from '@nestjs/core'
 import { Logger } from '@nestjs/common'
+import { NestFactory } from '@nestjs/core'
+import { NestExpressApplication } from '@nestjs/platform-express'
+import { initializeTransactionalContext } from 'typeorm-transactional'
 
 import { appUtilsService, envService } from '@app/common'
 import { AppModule } from '@modules/app/app.module'

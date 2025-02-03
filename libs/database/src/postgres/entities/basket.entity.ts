@@ -5,7 +5,8 @@ it is used only to demonstrate the types of entity relationships
 In real projects, it is recommended to save each entity 
 in the `src/modules/MODULE_NAME/entities` folder for better organization.
 */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+
 import { DbTables } from '../db.enum'
 
 @Entity(DbTables.baskets)

@@ -149,7 +149,7 @@ module.exports = {
 			return `${this.changeCase.pascal(queueName)}QueueModule`
 		},
 		QueueProcessorName(queueName) {
-			return `${this.changeCase.pascal(queueName)}Processor`
+			return `${this.changeCase.pascal(queueName)}QueueProcessor`
 		},
 		QueueServiceName(queueName) {
 			return `${this.changeCase.pascal(queueName)}QueueService`

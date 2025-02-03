@@ -1,4 +1,6 @@
-import { NodeEnvs } from '@app/common/enums'
+import 'dotenv/config'
+
+import { NodeEnvs } from '@app/common'
 
 class EnvService {
   public getEnvString(key: string, defaultValue = ''): string {

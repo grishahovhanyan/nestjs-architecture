@@ -1,5 +1,5 @@
-import { ValueTransformer } from 'typeorm'
 import * as bcrypt from 'bcryptjs'
+import { ValueTransformer } from 'typeorm'
 
 export class HashService {
   static make(input: string): string {

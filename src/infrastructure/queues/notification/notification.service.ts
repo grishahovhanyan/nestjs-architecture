@@ -1,11 +1,11 @@
-import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common'
 import { InjectQueue } from '@nestjs/bullmq'
+import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common'
 import { Queue } from 'bullmq'
 import _ from 'lodash'
 
 import { QueueNames } from '../queue.enum'
-import { NotificationJobNames } from './enums'
 import { AbstractQueueService } from '../queue.service'
+import { NotificationJobNames } from './enums'
 
 @Injectable()
 export class NotificationQueueService extends AbstractQueueService implements OnApplicationBootstrap {

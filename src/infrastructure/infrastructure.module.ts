@@ -1,9 +1,10 @@
-import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core'
 import { Global, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core'
 
 import { envValidationSchema, JwtAuthGuard, RequestLoggerInterceptor } from '@app/common'
 import { PostgresModule, RedisModule } from '@app/database'
+
 import { AWSModule } from './aws/aws.module'
 import { QueueModule } from './queues/queue.module'
 
