@@ -6,5 +6,4 @@ unless_exists: true
   queueServiceFileName = h.queueServiceFileName(queueName)
 
 %>export * from './enums'
-
 export * from './<%= queueServiceFileName %>'

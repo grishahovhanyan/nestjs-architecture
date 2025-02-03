@@ -12,10 +12,10 @@ unless_exists: true
   queueProcessorFileName = h.queueProcessorFileName(queueName)
   queueServiceFileName = h.queueServiceFileName(queueName)
 
-%>import { Module } from '@nestjs/common'
-import { BullModule } from '@nestjs/bullmq'
+%>import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'
 import { BullBoardModule } from '@bull-board/nestjs'
-import { BullMQAdapter } from '@bull-board/api/bullMQAdapter'
+import { BullModule } from '@nestjs/bullmq'
+import { Module } from '@nestjs/common'
 
 import { QueueNames } from '../queue.enum'
 import { <%= QueueProcessorName %> } from './<%= queueProcessorFileName %>'

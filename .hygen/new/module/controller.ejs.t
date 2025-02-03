@@ -31,12 +31,12 @@ skip_if: <%= !resources.includes('Controller') %>
   createDtoParamName = h.changeCase.camel(CreateDtoName)
   updateDtoParamName = h.changeCase.camel(UpdateDtoName)
 
-%>import { Get, Post, Query, Body, Param, Put, Delete } from '@nestjs/common'
-import { Swagger } from '@app/swagger'
+%>import { Body, Delete, Get, Param, Post, Put, Query } from '@nestjs/common'
 
+import { Swagger } from '@app/swagger'
 import { EnhancedController, RequestUser, TransformResponse } from '@app/common'
 
-import { <%= ResponseDtoName %>, <%= CreateDtoName %>, <%= GetDtoName %>, <%= UpdateDtoName %> } from './<%= dtosFolderName %>'
+import { <%= CreateDtoName %>, <%= GetDtoName %>, <%= UpdateDtoName %>, <%= ResponseDtoName %> } from './<%= dtosFolderName %>'
 import { <%= ServiceName %> } from './<%= serviceFileName %>'
 
 @EnhancedController('<%= ControllerPrefix %>')

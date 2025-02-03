@@ -10,14 +10,14 @@ unless_exists: true
 
   queueParamName = h.queueParamName(queueName)
 
-%>import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common'
-import { InjectQueue } from '@nestjs/bullmq'
+%>import { InjectQueue } from '@nestjs/bullmq'
+import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common'
 import { Queue } from 'bullmq'
 import _ from 'lodash'
 
 import { QueueNames } from '../queue.enum'
-import { <%= QueueJobNamesEnumName %> } from './enums'
 import { AbstractQueueService } from '../queue.service'
+import { <%= QueueJobNamesEnumName %> } from './enums'
 
 @Injectable()
 export class <%= QueueServiceName %> extends AbstractQueueService implements OnApplicationBootstrap {
@@ -40,6 +40,6 @@ export class <%= QueueServiceName %> extends AbstractQueueService implements OnA
   }
 
   public async exampleJob(payload: Record<string, string>) {
-    return await this.addJob(<%= QueueJobNamesEnumName %>.exampleJob, payload)
+    return this.addJob(<%= QueueJobNamesEnumName %>.exampleJob, payload)
   }
 }

@@ -8,8 +8,7 @@ unless_exists: true
   getDtoFileName = h.getDtoFileName(name)
   updateDtoFileName = h.updateDtoFileName(name)
 
-%>export * from './<%= responseDtoFileName %>'
-
-export * from './<%= createDtoFileName %>'
+%>export * from './<%= createDtoFileName %>'
 export * from './<%= getDtoFileName %>'
 export * from './<%= updateDtoFileName %>'
+export * from './<%= responseDtoFileName %>'

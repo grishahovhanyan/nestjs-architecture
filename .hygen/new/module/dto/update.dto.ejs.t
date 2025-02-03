@@ -10,6 +10,7 @@ skip_if: <%= !resources.includes('UpdateDto') %>
   UpdateDtoName = h.UpdateDtoName(name)
 
 %>import { PickType } from '@nestjs/swagger'
+
 import { <%= CreateDtoName %> } from './<%= createDtoFileName %>'
 
 export class <%= UpdateDtoName %> extends PickType(<%= CreateDtoName %>, [] as const) {}

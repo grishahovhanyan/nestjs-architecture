@@ -7,7 +7,8 @@ skip_if: <%= !resources.includes('CreateDto') %>
   GetDtoName = h.GetDtoName(name);
 
 %>import { IntersectionType } from '@nestjs/swagger'
-import { PaginationDto, SearchDto, OrderDto } from '@app/common'
+
+import { OrderDto, PaginationDto, SearchDto } from '@app/common'
 
 export class <%= GetDtoName %> extends IntersectionType(
   PaginationDto(),

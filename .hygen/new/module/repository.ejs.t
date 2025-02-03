@@ -14,6 +14,7 @@ skip_if: <%= !resources.includes('Repository') %>
 import { DataSource } from 'typeorm'
 
 import { BaseRepository } from '@app/database'
+
 import { <%= EntityName %> } from './<%= entitiesFolderName %>/<%= entityFileName %>'
 
 @Injectable()

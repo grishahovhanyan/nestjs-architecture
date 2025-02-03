@@ -32,8 +32,9 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
 import { NotFoundException, paginatedResponse, SUCCESS_RESPONSE } from '@app/common'
-import { <%= EntityName %> } from './<%= entitiesFolderName %>/<%= entityFileName %>'
+
 import { <%= CreateDtoName %>, <%= GetDtoName %>, <%= UpdateDtoName %> } from './<%= dtosFolderName %>'
+import { <%= EntityName %> } from './<%= entitiesFolderName %>/<%= entityFileName %>'
 import { <%= RepositoryName %> } from './<%= repositoryFileName %>'
 
 @Injectable()
