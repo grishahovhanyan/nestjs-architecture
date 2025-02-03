@@ -229,6 +229,8 @@ docker compose up
 
 - **`npm run lint`**: Executes ESLint to check for code quality issues and ensure that the code adheres to the defined coding standards.
 
+- **`npm run lint`**: Runs ESLint and automatically fixes fixable issues in the code, ensuring it complies with the project's coding rules.
+
 - **`npm run build`**: Compiles TypeScript files into JavaScript and outputs the results into the `dist` folder, preparing the application for deployment.
 
 - **`npm run start`**: Starts the NestJS application in production mode using the compiled files from the `dist` folder.
