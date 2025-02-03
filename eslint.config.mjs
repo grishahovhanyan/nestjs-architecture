@@ -6,6 +6,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import js from '@eslint/js'
 import { FlatCompat } from '@eslint/eslintrc'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -17,7 +18,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/eslint.config.mjs', '**/.prettierrc.js', 'dist/**'],
+    ignores: ['**/eslint.config.mjs', '**/.prettierrc.js', '.hygen.js', '.hygen/**', 'postgres_data/**', 'dist/**'],
   },
   ...compat.extends(
     'plugin:@typescript-eslint/recommended',
@@ -26,6 +27,7 @@ export default [
   {
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
+      'simple-import-sort': simpleImportSort,
     },
     languageOptions: {
       globals: {
@@ -100,7 +102,18 @@ export default [
       "space-infix-ops": "error",
       "semi-spacing": ["error", { "before": false, "after": true }],
       "comma-dangle": ["error", "never"],
-      "padded-blocks": ["error", "never"]
+      "padded-blocks": ["error", "never"],
+      "simple-import-sort/imports": [
+        "error",
+        {
+          "groups": [
+            ["^@?\\w", "^@", "^[^.]"],
+            ["^@app/swagger", "^@app/common", "^@app/database", "^@modules/", "^@infra/"],
+            ["^\\."],
+          ]
+        }
+      ],
+      "simple-import-sort/exports": "error",
     },
   },
   eslintPluginPrettierRecommended
