@@ -1,50 +1,43 @@
-import { Body, HttpCode, Post } from '@nestjs/common'
-import { Swagger } from '@app/swagger'
+import { Body, HttpCode, HttpStatus, Post } from '@nestjs/common'
 
-import { EnhancedController, TransformResponse, BadRequestException, ERROR_MESSAGES } from '@app/common'
-import { LoginResponseDto, LoginDto, RegisterDto } from './dto'
+import { Swagger } from '@app/swagger'
+import { EnhancedController, TransformResponse } from '@app/common'
 import { UserResponseDto } from '@modules/users/dto'
 
-import { NotificationQueueService } from '@infra/queues'
 import { AuthService } from './auth.service'
-import { UsersService } from '@modules/users/users.service'
+import { ForgotPasswordDto, LoginDto, LoginResponseDto, RegisterDto, ResetPasswordDto } from './dto'
 
 @EnhancedController('', false, 'Auth')
 export class AuthController {
-  constructor(
-    private readonly notificationQueueService: NotificationQueueService,
-    private readonly authService: AuthService,
-    private readonly usersService: UsersService
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Swagger({ response: UserResponseDto, 400: true })
   @Post('register')
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   @TransformResponse(UserResponseDto)
-  async register(@Body() registerDto: RegisterDto) {
-    const user = await this.usersService.getByEmail(registerDto.email)
-
-    if (user) {
-      throw new BadRequestException(ERROR_MESSAGES.userAlreadyExists)
-    }
-
-    const createdUser = await this.usersService.create(registerDto)
-
-    await this.notificationQueueService.registrationSuccess({
-      fullName: createdUser.fullName,
-      email: createdUser.email
-    })
-
-    return createdUser
+  register(@Body() registerDto: RegisterDto) {
+    return this.authService.register(registerDto)
   }
 
-  @Swagger({ response: LoginResponseDto, errorResponses: [400] })
+  @Swagger({ response: LoginResponseDto, 400: true })
   @Post('login')
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   @TransformResponse(LoginResponseDto)
-  async login(@Body() loginDto: LoginDto) {
-    const user = await this.authService.validateUser(loginDto.email, loginDto.password)
+  login(@Body() loginDto: LoginDto) {
+    return this.authService.login(loginDto)
+  }
 
-    return this.authService.login(user)
+  @Post('forgot-password')
+  @Swagger({ errorResponses: [400, 404] })
+  @HttpCode(HttpStatus.OK)
+  forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
+    return this.authService.forgotPassword(forgotPasswordDto)
+  }
+
+  @Post('reset-password')
+  @Swagger({ errorResponses: [400, 404] })
+  @HttpCode(HttpStatus.OK)
+  resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
+    return this.authService.resetPassword(resetPasswordDto)
   }
 }

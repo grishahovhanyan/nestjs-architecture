@@ -1,6 +1,6 @@
-import { ExtractJwt, Strategy } from 'passport-jwt'
-import { PassportStrategy } from '@nestjs/passport'
 import { Injectable } from '@nestjs/common'
+import { PassportStrategy } from '@nestjs/passport'
+import { ExtractJwt, Strategy } from 'passport-jwt'
 
 import { JWT_SECRET } from '@app/common'
 import { UsersService } from '@modules/users/users.service'

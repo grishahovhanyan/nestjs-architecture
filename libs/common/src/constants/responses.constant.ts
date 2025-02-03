@@ -23,7 +23,9 @@ export const ERROR_MESSAGES = {
   forbidden403: 'You do not have permission to perform this action.',
   notFound404: 'Not found.',
   userAlreadyExists: 'User with such email already exists.',
-  invalidEmailPassword: 'Invalid email and/or password.'
+  invalidEmailPassword: 'Invalid email and/or password.',
+  passwordResetTokenExpired: 'Password reset token has expired.',
+  passwordResetRequestTooFrequent: 'You can only request a password reset once per minute.'
 }
 
 export const SUCCESS_RESPONSE = { message: 'success' }

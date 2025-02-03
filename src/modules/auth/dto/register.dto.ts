@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsDefined, IsString } from 'class-validator'
+
 import { VALIDATION_MESSAGES } from '@app/common'
 import { EmailField, PasswordField, StringField } from '@app/common/validators'
 
