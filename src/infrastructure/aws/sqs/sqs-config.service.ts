@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Logger } from '@nestjs/common'
 import { SqsModuleOptionsFactory, SqsOptions } from '@ssut/nestjs-sqs/dist/sqs.types'
 
 import {
@@ -12,7 +12,18 @@ import {
 
 @Injectable()
 export class SqsConfigService implements SqsModuleOptionsFactory {
+  private readonly logger = new Logger(SqsConfigService.name)
+
   createOptions(): SqsOptions {
+    if (!SQS_URL || SQS_QUEUE_NAME) {
+      this.logger.error('SQS configuration is invalid: SQS_URL is missing or SQS_QUEUE_NAME is incorrectly set.')
+
+      return {
+        consumers: [],
+        producers: []
+      }
+    }
+
     return {
       consumers: [
         {
