@@ -10,6 +10,8 @@ import { validate } from 'class-validator'
 
 import { VALIDATION_MESSAGES } from '@app/common'
 
+export type ValidationErrorPayload = Record<string, string[]>
+
 const constraintsToMessages = {
   isDefined: VALIDATION_MESSAGES.required,
   isBoolean: VALIDATION_MESSAGES.invalidBoolean,
@@ -42,17 +44,20 @@ export class ValidationPipe extends NestValidationPipe {
     const errors = await validate(objectToValidate)
 
     if (errors.length > 0) {
-      const formattedErrors = errors.reduce((obj, error) => {
+      const formattedErrors: ValidationErrorPayload = errors.reduce((obj, error) => {
         obj[error.property] = Object.entries(error.constraints || {}).map(
           ([key, value]) => constraintsToMessages[key] || value
         )
         return obj
       }, {})
 
-      throw new BadRequestException(formattedErrors)
+      throw new BadRequestException({ ...formattedErrors, validationError: true })
     }
 
-    // Call the parent's transform method
-    return super.transform(value, metadata)
+    // Call super.transform() to apply NestJS transformation logic
+    const transformedObject = await super.transform(value, metadata)
+
+    // Strip undefined values from the final transformed object
+    return Object.fromEntries(Object.entries(transformedObject).filter(([, v]) => v !== undefined))
   }
 }

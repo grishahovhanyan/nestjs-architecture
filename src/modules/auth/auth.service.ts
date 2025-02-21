@@ -1,9 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { randomUUID } from 'crypto'
 
 import {
-  BadRequestException,
   ERROR_MESSAGES,
   HashService,
   RESET_PASSWORD_REQUEST_TIME_LIMIT,

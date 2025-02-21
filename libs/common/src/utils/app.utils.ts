@@ -5,7 +5,7 @@ import compression from 'compression'
 import helmet from 'helmet'
 
 import { SWAGGER_CONFIGS, SWAGGER_OPTIONS } from '@app/swagger'
-import { ValidationPipe } from '@app/common'
+import { HttpExceptionFilter, ValidationPipe } from '@app/common'
 
 import { envService } from './get-env'
 
@@ -15,6 +15,9 @@ class AppUtilsService {
   public setupApp(app: NestExpressApplication, apiVersion: string = 'v1') {
     // Register a global validation pipe to validate incoming requests
     app.useGlobalPipes(new ValidationPipe())
+
+    // Register a global exception filter
+    app.useGlobalFilters(new HttpExceptionFilter({ logging: !envService.isProductionEnv() }))
 
     // Set a global prefix for all routes in the API
     app.setGlobalPrefix(`api/${apiVersion}`)

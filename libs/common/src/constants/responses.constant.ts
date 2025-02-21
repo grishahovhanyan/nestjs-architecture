@@ -19,6 +19,7 @@ export const VALIDATION_MESSAGES = {
 }
 
 export const ERROR_MESSAGES = {
+  badRequest400: 'Bad request.',
   unauthorized401: 'Authentication credentials were not provided.',
   forbidden403: 'You do not have permission to perform this action.',
   notFound404: 'Not found.',
