@@ -30,10 +30,10 @@ export class BaseRepository<T> {
   }
 
   async create(createInput: DeepPartial<T>): Promise<T> {
-    const user = this.getRepository().create(createInput)
-    await this.getRepository().save(user)
+    const instance = this.getRepository().create(createInput)
+    await this.getRepository().save(instance)
 
-    return user
+    return instance
   }
 
   async bulkCreate(bulkCreateInput: DeepPartial<T>[]) {

@@ -7,8 +7,7 @@ import basicAuth from 'express-basic-auth'
 import { envService } from '@app/common'
 import { REDIS_CONFIG } from '@app/database'
 
-import { MailQueueModule } from './mail/mail.module'
-import { NotificationQueueModule } from './notification/notification.module'
+import { MailQueueModule, NotificationQueueModule } from './index'
 
 /*
 ####### NOTE #######
